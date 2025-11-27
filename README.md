@@ -92,15 +92,26 @@ CREATE TABLE reembolsos (
 );
 
 
+
+
+
+
+
+
+
 ================= LO QUE SE FUÉ AGREGANDO  ======================
 
-*LO QUE SE FUÉ AGREGANDO*
+
 
 ALTER TABLE cursos
 ADD COLUMN imagen TEXT,
 ADD COLUMN precio DECIMAL(10,2);
 
+
+
 ----------------------------------------
+
+
 
 ALTER TABLE usuarios
 ADD COLUMN fecha_nacimiento DATE NULL AFTER apellido,
@@ -108,9 +119,15 @@ ADD COLUMN dni VARCHAR(20) NULL AFTER fecha_nacimiento,
 ADD COLUMN telefono VARCHAR(30) NULL AFTER dni;
 
 
+
+
 -------------------------------------------------------
 
+
+
 SE ELIMINA LA TABLA MODULOS
+
+
 
 -------------------------------------------------------
 
