@@ -131,6 +131,24 @@ SE ELIMINA LA TABLA MODULOS
 
 -------------------------------------------------------
 
+PARTE PARA EL ADMIN:
+
+-- Agregar columna 'rol' a la tabla usuarios
+ALTER TABLE usuarios 
+ADD COLUMN rol ENUM('estudiante', 'admin') NOT NULL DEFAULT 'estudiante' AFTER password;
+
+-- Insertar usuario administrador
+INSERT INTO usuarios (nombre, apellido, email, password, rol) 
+VALUES ('Admin', 'Sistema', 'admin@educacionit.com', 'admin123', 'admin');
+
+
+
+--------------------------------------------------------
+
+
+
+
+
 AGREGAR EN CURSOS:
 
 INSERT INTO cursos (titulo, descripcion, categoria, duracion_horas, precio, imagen)
