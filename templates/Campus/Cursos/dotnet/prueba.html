@@ -1,0 +1,350 @@
+ <!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Evaluación Final - .NET</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Campus/Cursos/dotnet/styles.css') }}">
+</head>
+<body>
+  <main class="quiz-container container py-4">
+    <h2 class="text-center mb-3">Evaluación Final - .NET</h2>
+    <p class="text-center">Tienes 5 minutos para completar el test. Para aprobar debes obtener al menos 7 puntos.</p>
+    <div class="text-center mb-3">
+      <span>Tiempo restante: </span><span id="timer">05:00</span>
+    </div>
+
+    <form id="quizForm">
+      <!-- Preguntas -->
+      <div class="question">
+        <p><strong>1. ¿Qué es el framework .NET?</strong></p>
+        <label><input type="radio" name="q1" value="correcta"> a) Un entorno para desarrollar y ejecutar aplicaciones en C# y otros lenguajes.</label><br>
+        <label><input type="radio" name="q1" value="opcion2"> b) Un editor de texto para HTML.</label><br>
+        <label><input type="radio" name="q1" value="opcion3"> c) Un sistema operativo.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>2. ¿Cuál es el lenguaje principal que se usa en .NET?</strong></p>
+        <label><input type="radio" name="q2" value="correcta"> a) C#</label><br>
+        <label><input type="radio" name="q2" value="opcion2"> b) Java</label><br>
+        <label><input type="radio" name="q2" value="opcion3"> c) Python</label>
+      </div>
+
+      <div class="question">
+        <p><strong>3. ¿Para qué sirve LINQ en .NET?</strong></p>
+        <label><input type="radio" name="q3" value="correcta"> a) Realizar consultas a colecciones y bases de datos de forma sencilla.</label><br>
+        <label><input type="radio" name="q3" value="opcion2"> b) Diseñar interfaces gráficas.</label><br>
+        <label><input type="radio" name="q3" value="opcion3"> c) Compilar aplicaciones.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>4. Entity Framework en .NET se utiliza para:</strong></p>
+        <label><input type="radio" name="q4" value="correcta"> a) Mapear y gestionar datos en bases de datos relacionales.</label><br>
+        <label><input type="radio" name="q4" value="opcion2"> b) Diseñar páginas web estáticas.</label><br>
+        <label><input type="radio" name="q4" value="opcion3"> c) Crear archivos PDF.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>5. ¿Qué tecnología de .NET permite crear aplicaciones web?</strong></p>
+        <label><input type="radio" name="q5" value="correcta"> a) ASP.NET</label><br>
+        <label><input type="radio" name="q5" value="opcion2"> b) Windows Forms</label><br>
+        <label><input type="radio" name="q5" value="opcion3"> c) SQL Server</label>
+      </div>
+
+      <div class="question">
+        <p><strong>6. ¿Qué tipo de aplicaciones se pueden crear con Windows Forms?</strong></p>
+        <label><input type="radio" name="q6" value="correcta"> a) Aplicaciones de escritorio.</label><br>
+        <label><input type="radio" name="q6" value="opcion2"> b) Aplicaciones móviles.</label><br>
+        <label><input type="radio" name="q6" value="opcion3"> c) Servidores en la nube.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>7. ¿Qué es un token en aplicaciones .NET?</strong></p>
+        <label><input type="radio" name="q7" value="correcta"> a) Un mecanismo para autenticar y autorizar usuarios.</label><br>
+        <label><input type="radio" name="q7" value="opcion2"> b) Un tipo de variable numérica.</label><br>
+        <label><input type="radio" name="q7" value="opcion3"> c) Una función para imprimir mensajes.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>8. ¿Qué significa internacionalizar (internalizar) una aplicación en .NET?</strong></p>
+        <label><input type="radio" name="q8" value="correcta"> a) Adaptarla para diferentes culturas e idiomas.</label><br>
+        <label><input type="radio" name="q8" value="opcion2"> b) Traducir solo los comentarios del código.</label><br>
+        <label><input type="radio" name="q8" value="opcion3"> c) Convertirla en una aplicación de escritorio.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>9. ¿Qué es la gestión del versionado en desarrollo de software .NET?</strong></p>
+        <label><input type="radio" name="q9" value="correcta"> a) Buenas prácticas para controlar las versiones de la aplicación.</label><br>
+        <label><input type="radio" name="q9" value="opcion2"> b) Un tipo de base de datos.</label><br>
+        <label><input type="radio" name="q9" value="opcion3"> c) Un sistema para compilar proyectos.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>10. ¿Qué imprime este código en C#?</strong></p>
+        <pre>
+int[] numeros = { 1, 2, 3, 4, 5 };
+var resultado = numeros.Where(n => n > 3);
+foreach(var n in resultado){
+    Console.WriteLine(n);
+}
+        </pre>
+        <label><input type="radio" name="q10" value="correcta"> a) Imprime 4 y 5</label><br>
+        <label><input type="radio" name="q10" value="opcion2"> b) Imprime 1, 2, 3</label><br>
+        <label><input type="radio" name="q10" value="opcion3"> c) Imprime todos los números del array</label><br>
+        <label><input type="radio" name="q10" value="opcion4"> d) No imprime nada</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
+
+    <div id="result" class="mt-3"></div>
+
+    <div class="text-center mt-3">
+      <button id="retryBtn" class="btn btn-warning" style="display:none;">Volver a intentar</button>
+      <button id="certBtn" class="btn btn-success" style="display:none;">Obtener mi certificado</button>
+    </div>
+  </main>
+
+<script>
+  
+// ============================================
+// CONFIGURACIÓN
+// ============================================
+const ID_CURSO = 7; 
+
+const totalPreguntas = 10;
+const minAprobado = 7;
+let tiempoRestante = 300; // 5 minutos
+let temporizador;
+
+const timerSpan = document.getElementById('timer');
+const quizForm = document.getElementById('quizForm');
+const result = document.getElementById('result');
+const retryBtn = document.getElementById('retryBtn');
+const certBtn = document.getElementById('certBtn');
+
+// ============================================
+// FUNCIÓN: MARCAR CURSO COMO COMPLETADO EN BD
+// ============================================
+async function completarCursoEnBD() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}/completar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('✅ Curso marcado como completado en la base de datos');
+      return true;
+    } else {
+      console.error('❌ Error al completar curso:', data.error);
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Error de conexión:', error);
+    return false;
+  }
+}
+
+// ============================================
+// TEMPORIZADOR
+// ============================================
+function iniciarTemporizador() {
+  clearInterval(temporizador);
+  tiempoRestante = 300;
+  temporizador = setInterval(() => {
+    let minutos = Math.floor(tiempoRestante / 60);
+    let segundos = tiempoRestante % 60;
+    timerSpan.textContent = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}`;
+    tiempoRestante--;
+    if (tiempoRestante < 0) {
+      clearInterval(temporizador);
+      evaluarTest(true);
+    }
+  }, 1000);
+}
+
+function resetearTest() {
+  quizForm.reset();
+  result.innerHTML = '';
+  retryBtn.style.display = 'none';
+  certBtn.style.display = 'none';
+  iniciarTemporizador();
+}
+
+// ============================================
+// EVENTOS
+// ============================================
+quizForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  evaluarTest(false);
+});
+
+retryBtn.addEventListener('click', () => {
+  resetearTest();
+});
+
+certBtn.addEventListener('click', () => {
+  window.location.href = "{{ url_for('curso_net_certificado') }}";
+});
+
+// ============================================
+// EVALUAR TEST
+// ============================================
+async function evaluarTest(tiempoAcabado) {
+  const respuestasCorrectas = {
+    q1:'correcta', q2:'correcta', q3:'correcta', q4:'correcta', q5:'correcta',
+    q6:'correcta', q7:'correcta', q8:'correcta', q9:'correcta', q10:'correcta'
+  };
+
+  let puntaje = 0;
+  for (let q in respuestasCorrectas) {
+    const r = document.querySelector(`input[name="${q}"]:checked`);
+    if (r && r.value === respuestasCorrectas[q]) {
+      puntaje++;
+    }
+  }
+
+  // ============================================
+  // SI APROBÓ (≥7 puntos)
+  // ============================================
+  if (puntaje >= minAprobado) {
+    // Mostrar mensaje inicial
+    result.innerHTML = `
+      <div class="alert alert-success">
+        <h4 class="alert-heading">
+          <i class="bi bi-check-circle-fill"></i> ¡Felicidades!
+        </h4>
+        <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+        <p>Ahora puedes obtener tu certificado y tendrás la oportunidad de subir un proyecto guiado en PDF para mejorar tu perfil profesional en la bolsa de empleo de EducaciónIT.</p>
+        <hr>
+        <p class="mb-0">
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Guardando...</span>
+          </div>
+          Marcando curso como completado...
+        </p>
+      </div>
+    `;
+
+    certBtn.style.display = 'none';
+    retryBtn.style.display = 'none';
+    clearInterval(temporizador);
+
+    // Marcar curso como completado en la base de datos
+    const exitoso = await completarCursoEnBD();
+
+    if (exitoso) {
+
+      // 🟢 NUEVO BLOQUE: Enviar nota y generar certificado automáticamente
+      try {
+        const respNota = await fetch(`/api/curso/${ID_CURSO}/nota`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nota: puntaje })
+        });
+        const dataNota = await respNota.json();
+        console.log('Respuesta del servidor (nota/certificado):', dataNota);
+
+        if (dataNota.aprobado) {
+          console.log('✅ Certificado generado automáticamente.');
+        } else {
+          console.warn('⚠️ Nota registrada, pero sin certificado.');
+        }
+      } catch (err) {
+        console.error('❌ Error al enviar la nota o generar certificado:', err);
+      }
+
+      // Actualizar mensaje de éxito
+      result.innerHTML = `
+        <div class="alert alert-success">
+          <h4 class="alert-heading">
+            <i class="bi bi-trophy-fill"></i> ¡Curso Completado!
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Ahora puedes obtener tu certificado y tendrás la oportunidad de subir un proyecto guiado en PDF para mejorar tu perfil profesional en la bolsa de empleo de EducaciónIT.</p>
+          <hr>
+          <p class="mb-0">
+            <i class="bi bi-check-circle-fill text-success"></i> 
+            Curso marcado como completado exitosamente.
+          </p>
+        </div>
+      `;
+   
+      certBtn.style.display = 'inline-block';
+  
+      // ✅ AGREGAR: Botón para volver al curso (solo si no existe)
+      const contenedorBotones = document.querySelector('.text-center.mt-3');
+      const botonExistente = contenedorBotones.querySelector('.btn-volver-curso');
+  
+      if (!botonExistente) {
+        const volverBtn = document.createElement('button');
+        volverBtn.className = 'btn btn-primary ms-2 btn-volver-curso';
+        volverBtn.innerHTML = '<i class="bi bi-arrow-left"></i> Volver al Curso';
+        volverBtn.onclick = () => {
+          window.location.href = "{{ url_for('curso_net') }}";
+        };
+        contenedorBotones.appendChild(volverBtn);
+      }
+
+    } else {
+      // Error al guardar, pero igual mostrar botón de certificado
+      result.innerHTML = `
+        <div class="alert alert-warning">
+          <h4 class="alert-heading">
+            <i class="bi bi-exclamation-triangle-fill"></i> Aprobado (con advertencia)
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>¡Felicidades! Aprobaste la evaluación, pero hubo un problema al guardar en el servidor.</p>
+          <p>Por favor contacta al administrador o intenta nuevamente más tarde.</p>
+        </div>
+      `;
+    }
+
+  // ============================================
+  // SI NO APROBÓ (<7 puntos)
+  // ============================================
+  } else {
+    if (tiempoAcabado) {
+      result.innerHTML = `
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">
+            <i class="bi bi-clock-fill"></i> Tiempo Agotado
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Se acabó el tiempo. Necesitas al menos ${minAprobado} puntos para aprobar.</p>
+          <p>Debes volver a intentar el test.</p>
+        </div>
+      `;
+    } else {
+      result.innerHTML = `
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">
+            <i class="bi bi-x-circle-fill"></i> No Aprobado
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Necesitas al menos ${minAprobado} puntos para aprobar.</p>
+          <p>Te recomendamos revisar el material del curso antes de volver a intentarlo.</p>
+        </div>
+      `;
+    }
+    retryBtn.style.display = 'inline-block';
+    certBtn.style.display = 'none';
+    clearInterval(temporizador);
+  }
+}
+
+// ============================================
+// INICIAR AL CARGAR LA PÁGINA
+// ============================================
+iniciarTemporizador();
+
+</script>
+
+
+
+</body>
+</html>

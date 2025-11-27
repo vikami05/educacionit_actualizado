@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - EducacionIT</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='EducacionIT/admin_panel.css') }}">
+</head>
+<body>
+
+<!-- Header -->
+<div class="admin-header position-relative">
+  <h1><i class="fas fa-user-shield"></i> Panel de Administración</h1>
+  <p class="text-muted mb-0">Gestión completa del sistema</p>
+  <a href="{{ url_for('admin_logout') }}" class="logout-btn">
+    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+</a>
+</div>
+
+<div class="container">
+  <div class="container-custom">
+    
+    <!-- Tabs de navegación -->
+    <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="usuarios-tab" data-bs-toggle="tab" href="#usuarios" role="tab">
+          <i class="fas fa-users"></i> Usuarios
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="progreso-tab" data-bs-toggle="tab" href="#progreso" role="tab">
+          <i class="fas fa-chart-line"></i> Progreso
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pagos-tab" data-bs-toggle="tab" href="#pagos" role="tab">
+          <i class="fas fa-credit-card"></i> Pagos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="reembolsos-tab" data-bs-toggle="tab" href="#reembolsos" role="tab">
+          <i class="fas fa-undo"></i> Reembolsos
+        </a>
+      </li>
+    </ul>
+
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content mt-4">
+      
+      <!-- ============ USUARIOS ============ -->
+      <div class="tab-pane fade show active" id="usuarios" role="tabpanel">
+        <h4><i class="fas fa-users"></i> Gestión de Usuarios</h4>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" id="tablaUsuarios">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============ PROGRESO ============ -->
+      <div class="tab-pane fade" id="progreso" role="tabpanel">
+        <h4><i class="fas fa-chart-line"></i> Progreso de Estudiantes</h4>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" id="tablaProgreso">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Curso</th>
+                <th>Avance</th>
+                <th>Progreso</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============ PAGOS ============ -->
+      <div class="tab-pane fade" id="pagos" role="tabpanel">
+        <h4><i class="fas fa-credit-card"></i> Historial de Pagos</h4>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" id="tablaPagos">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Curso</th>
+                <th>Monto</th>
+                <th>Método</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============ REEMBOLSOS ============ -->
+      <div class="tab-pane fade" id="reembolsos" role="tabpanel">
+        <h4><i class="fas fa-undo"></i> Solicitudes de Reembolso</h4>
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" id="tablaReembolsos">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Curso</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Editar Usuario -->
+<div class="modal fade" id="modalEditarUsuario" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-user-edit"></i> Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editUserId">
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="editNombre">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="editApellido">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="editEmail">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Rol</label>
+          <select class="form-select" id="editRol">
+            <option value="estudiante">Estudiante</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarUsuario()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ==================== USUARIOS ====================
+async function cargarUsuarios() {
+  const res = await fetch('/api/usuarios');
+  const data = await res.json();
+  const tbody = document.querySelector('#tablaUsuarios tbody');
+  tbody.innerHTML = '';
+  data.forEach(u => {
+    const rolBadge = u.rol === 'admin' 
+      ? '<span class="badge bg-danger">Admin</span>' 
+      : '<span class="badge bg-primary">Estudiante</span>';
+    
+    tbody.innerHTML += `<tr>
+      <td>${u.id_usuario}</td>
+      <td>${u.nombre}</td>
+      <td>${u.apellido}</td>
+      <td>${u.email}</td>
+      <td>${rolBadge}</td>
+      <td>
+        <button class="btn-editar" onclick="editarUsuario(${u.id_usuario}, '${u.nombre}', '${u.apellido}', '${u.email}', '${u.rol}')">
+          <i class="fas fa-edit"></i> Editar
+        </button>
+        <button class="btn-eliminar" onclick="eliminarUsuario(${u.id_usuario})">
+          <i class="fas fa-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>`;
+  });
+}
+
+function editarUsuario(id, nombre, apellido, email, rol) {
+  document.getElementById('editUserId').value = id;
+  document.getElementById('editNombre').value = nombre;
+  document.getElementById('editApellido').value = apellido;
+  document.getElementById('editEmail').value = email;
+  document.getElementById('editRol').value = rol;
+  new bootstrap.Modal(document.getElementById('modalEditarUsuario')).show();
+}
+
+async function guardarUsuario() {
+  const id = document.getElementById('editUserId').value;
+  const data = {
+    nombre: document.getElementById('editNombre').value,
+    apellido: document.getElementById('editApellido').value,
+    email: document.getElementById('editEmail').value,
+    rol: document.getElementById('editRol').value
+  };
+
+  const res = await fetch(`/api/usuarios/${id}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  });
+
+  if(res.ok) {
+    bootstrap.Modal.getInstance(document.getElementById('modalEditarUsuario')).hide();
+    cargarUsuarios();
+    alert('✅ Usuario actualizado correctamente');
+  } else {
+    alert('❌ Error al actualizar usuario');
+  }
+}
+
+async function eliminarUsuario(id) {
+  if(!confirm('¿Estás seguro de eliminar este usuario?')) return;
+  
+  const res = await fetch(`/api/usuarios/${id}`, {method: 'DELETE'});
+  if(res.ok) {
+    cargarUsuarios();
+    alert('✅ Usuario eliminado');
+  } else {
+    alert('❌ Error al eliminar usuario');
+  }
+}
+
+// ==================== PROGRESO ====================
+async function cargarProgreso() {
+  const res = await fetch('/api/progreso_admin');
+  const data = await res.json();
+  const tbody = document.querySelector('#tablaProgreso tbody');
+  tbody.innerHTML = '';
+  data.forEach(p => {
+    tbody.innerHTML += `<tr>
+      <td>${p.id_progreso}</td>
+      <td>${p.nombre} ${p.apellido}</td>
+      <td>${p.curso}</td>
+      <td>${p.avance}</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar bg-success" style="width: ${p.porcentaje}">${p.porcentaje}</div>
+        </div>
+      </td>
+      <td>
+        <button class="btn-eliminar" onclick="eliminarProgreso(${p.id_progreso})">
+          <i class="fas fa-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>`;
+  });
+}
+
+async function eliminarProgreso(id) {
+  if(!confirm('¿Eliminar este progreso?')) return;
+  const res = await fetch(`/api/progreso_admin/${id}`, {method: 'DELETE'});
+  if(res.ok) {
+    cargarProgreso();
+    alert('✅ Progreso eliminado');
+  }
+}
+
+// ==================== PAGOS ====================
+async function cargarPagos() {
+  const res = await fetch('/api/pagos');
+  const data = await res.json();
+  const tbody = document.querySelector('#tablaPagos tbody');
+  tbody.innerHTML = '';
+  data.forEach(p => {
+    const estadoBadge = p.estado_pago === 'Aprobado' 
+      ? '<span class="badge bg-success">Aprobado</span>' 
+      : '<span class="badge bg-warning">Pendiente</span>';
+    
+    tbody.innerHTML += `<tr>
+      <td>${p.id_pago}</td>
+      <td>${p.nombre_usuario} ${p.apellido_usuario}</td>
+      <td>${p.curso}</td>
+      <td>$${p.monto}</td>
+      <td>${p.metodo_pago}</td>
+      <td>${estadoBadge}</td>
+      <td>${p.fecha}</td>
+      <td>
+        <button class="btn-eliminar" onclick="eliminarPago(${p.id_pago})">
+          <i class="fas fa-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>`;
+  });
+}
+
+async function eliminarPago(id) {
+  if(!confirm('¿Eliminar este pago?')) return;
+  const res = await fetch(`/api/pagos/${id}`, {method: 'DELETE'});
+  if(res.ok) {
+    cargarPagos();
+    alert('✅ Pago eliminado');
+  }
+}
+
+// ==================== REEMBOLSOS ====================
+async function cargarReembolsos() {
+  const res = await fetch('/api/reembolsos');
+  const data = await res.json();
+  const tbody = document.querySelector('#tablaReembolsos tbody');
+  tbody.innerHTML = '';
+  data.forEach(r => {
+    const estadoBadge = r.estado_reembolso === 'Pendiente' 
+      ? '<span class="badge bg-warning">Pendiente</span>' 
+      : r.estado_reembolso === 'Aprobado'
+      ? '<span class="badge bg-success">Aprobado</span>'
+      : '<span class="badge bg-danger">Rechazado</span>';
+
+    tbody.innerHTML += `<tr>
+      <td>${r.id_reembolso}</td>
+      <td>${r.nombre_usuario} ${r.apellido_usuario}</td>
+      <td>${r.curso}</td>
+      <td>${r.motivo}</td>
+      <td>${estadoBadge}</td>
+      <td>
+        ${r.estado_reembolso === 'Pendiente' ? `
+          <button class="btn-aprobar" onclick="actualizarReembolso(${r.id_reembolso}, 'Aprobado')">
+            <i class="fas fa-check"></i> Aprobar
+          </button>
+          <button class="btn-rechazar" onclick="actualizarReembolso(${r.id_reembolso}, 'Rechazado')">
+            <i class="fas fa-times"></i> Rechazar
+          </button>
+        ` : ''}
+        <button class="btn-eliminar" onclick="eliminarReembolso(${r.id_reembolso})">
+          <i class="fas fa-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>`;
+  });
+}
+
+async function actualizarReembolso(id, estado) {
+  const res = await fetch(`/api/reembolsos/${id}`, {
+    method: 'PUT',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({estado})
+  });
+  if(res.ok) {
+    cargarReembolsos();
+    alert(`✅ Reembolso ${estado}`);
+  }
+}
+
+async function eliminarReembolso(id) {
+  if(!confirm('¿Eliminar este reembolso?')) return;
+  const res = await fetch(`/api/reembolsos/${id}`, {method: 'DELETE'});
+  if(res.ok) {
+    cargarReembolsos();
+    alert('✅ Reembolso eliminado');
+  }
+}
+
+// ==================== CARGAR TODO AL INICIO ====================
+cargarUsuarios();
+cargarProgreso();
+cargarPagos();
+cargarReembolsos();
+
+// Recargar al cambiar de pestaña
+document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+  tab.addEventListener('shown.bs.tab', (e) => {
+    const target = e.target.getAttribute('href');
+    if(target === '#usuarios') cargarUsuarios();
+    if(target === '#progreso') cargarProgreso();
+    if(target === '#pagos') cargarPagos();
+    if(target === '#reembolsos') cargarReembolsos();
+  });
+});
+</script>
+
+</body>
+</html>

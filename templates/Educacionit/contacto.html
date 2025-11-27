@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título -->
+  <title>Contacto</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}">
+
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='Educacionit/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Educacionit/contacto.css') }}">
+
+  <!-- Iconos de Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarResponsive">
+  <!-- Sección Inicio -->
+  <div id="home">
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}" alt="Logo Educación IT" height="60">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('nosotros') }}">¿Quiénes Somos?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('profesores') }}">Profesores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('cursos') }}">Cursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('contacto') }}">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="campus-btn" href="{{ url_for('inicio_campus') }}">Campus Virtual</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  
+
+  <!-- Sección Contacto -->
+<section id="contacto" class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="text-center mb-4">Contáctanos</h2>
+        <form class="p-4 shadow rounded bg-white">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+            </div>
+            <div class="col-md-6">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Tu apellido">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="tucorreo@ejemplo.com">
+          </div>
+
+          <div class="mb-3">
+            <label for="curso" class="form-label">Curso de Interés</label>
+            <select class="form-select" id="curso">
+              <option selected disabled>Selecciona un curso</option>
+              <option>Manejo de IA</option>
+              <option>Chat GPT</option>
+              <option>IA para Contenido Visual</option>
+              <option>IA avanzada para Proyectos</option>
+              <option>Pyhton</option>
+              <option>Java</option>
+              <option>JavaScript</option>
+              <option>.Net</option>
+              <option>Community Manager</option>
+              <option>SEO</option>
+              <option>Publicidad en Redes Sociales</option>
+              <option>Marketing de Contenido</option>
+              <option>Introducción a UI/UX</option>
+              <option>UI Animations/Microinteracciones</option>
+              <option>Herramientas de Diseño Profesionales/Avanzados</option>
+              <option>UX para Productos Digitales</option>
+              <option>Ciencia de Datos</option>
+              <option>Introducción a Big Data</option>
+              <option>IA y Big Data</option>
+              <option>Análisis de Datos</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="4" placeholder="Escribe tu consulta aquí..."></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4">Enviar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 🔹 Aviso de reembolso justo debajo del formulario -->
+<div class="aviso-reembolso text-center mt-3">
+  <p>
+    ¿Tuviste un problema con tu compra o querés solicitar un reembolso? 
+    Nuestro equipo de soporte puede ayudarte.
+  </p>
+  <button class="btn btn-warning px-4 py-2" id="abrirReembolso">
+    <i class="bi bi-arrow-counterclockwise"></i> Solicitar reembolso
+  </button>
+</div>
+</section>
+
+
+
+<!-- 🔹 Modal tipo WinForm -->
+<div class="modal-reembolso" id="modalReembolso">
+  <div class="modal-content-reembolso">
+    <span class="close-modal" id="cerrarReembolso">&times;</span>
+
+    <div class="text-center mb-3">
+      <i class="bi bi-arrow-counterclockwise" style="font-size:2rem;color:#ffc107;"></i>
+      <h4 class="mt-2 fw-bold">Solicitud de Reembolso</h4>
+      <p class="text-muted small">
+        Completá el siguiente formulario para enviar tu pedido al área de soporte.
+      </p>
+    </div>
+
+    <form id="formReembolso">
+      <!-- 📧 Correo -->
+      <div class="mb-3">
+        <label for="email_usuario" class="form-label fw-semibold">Correo electrónico</label>
+        <input type="email" class="form-control" id="email_usuario" name="email_usuario"
+          placeholder="tuemail@correo.com" required>
+      </div>
+
+      <!-- 💳 Curso / Pago -->
+      <div class="mb-3">
+        <label for="id_pago" class="form-label fw-semibold">Curso / Pago asociado</label>
+        <select class="form-control" id="id_pago" name="id_pago" required>
+          <option value="">Seleccioná tu curso</option>
+          <option value="1">Manejo de IA</option>
+          <option value="2">Chat GPT</option>
+          <option value="3">IA para Contenido Visual</option>
+          <option value="4">IA Avanzada para Proyectos</option>
+          <option value="5">Python</option>
+          <option value="6">Java</option>
+          <option value="7">.Net</option>
+        </select>
+        <small class="text-muted">El número seleccionado se guarda como ID de pago interno.</small>
+      </div>
+
+      <!-- ✏️ Motivo -->
+      <div class="mb-3">
+        <label for="motivo" class="form-label fw-semibold">Motivo</label>
+        <textarea class="form-control" id="motivo" name="motivo" rows="3"
+          placeholder="Contanos brevemente el motivo..." required></textarea>
+      </div>
+
+      <!-- 🔘 Botón -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-warning px-4">Enviar</button>
+      </div>
+    </form>
+
+    <!-- ✅ Mensaje de éxito -->
+    <div id="mensajeExito" class="text-center mt-4 d-none">
+      <i class="bi bi-check-circle text-success" style="font-size:2rem;"></i>
+      <h5 class="mt-2">Solicitud enviada correctamente</h5>
+      <p>Te contactaremos por correo cuando el área de soporte la procese.</p>
+    </div>
+
+    <div id="mensajeExito" class="alert alert-success text-center mt-3 d-none">
+      ✅ Solicitud enviada correctamente.
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-white text-dark pt-5">
+  <div class="container">
+
+    <!-- Logo y Redes Sociales -->
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <img src="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}" alt="EducaciónIT" style="height: 60px;">
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="https://www.instagram.com/" target="_blank" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-whatsapp" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="tel:+549XXXXXXXXXX" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-telephone-fill" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="mailto:contacto@educacionit.com.ar" class="text-dark" style="text-decoration: none;">
+          <i class="bi bi-envelope-fill" style="font-size: 1.5rem;"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ¿Te podemos ayudar? -->
+    <div class="row mb-4">
+      <div class="col text-center">
+        <h5 class="fw-bold" style="font-family: 'Quicksand', sans-serif;">¿Te podemos ayudar?</h5>
+        <p class="mb-0" style="font-size: 1.2rem;">
+          <a href="tel:+549XXXXXXXXXX" class="text-dark" style="text-decoration: none;">📞 +54 9 XXXX XXXX</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Derechos reservados -->
+    <div class="row">
+      <div class="col text-center">
+        <p class="mb-0" style="font-family: 'Quicksand', sans-serif;">
+          &copy; 2025 EducaciónIT. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<script>
+const abrir = document.getElementById("abrirReembolso");
+const modal = document.getElementById("modalReembolso");
+const cerrar = document.getElementById("cerrarReembolso");
+
+abrir.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+cerrar.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// 🔹 Enviar solicitud al backend Flask
+document.getElementById("formReembolso").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    email_usuario: document.getElementById("email_usuario").value,
+    id_pago: document.getElementById("id_pago").value,
+    motivo: document.getElementById("motivo").value
+  };
+
+  try {
+    const response = await fetch("/api/reembolsos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      // Mostrar mensaje de éxito
+      document.getElementById("formReembolso").classList.add("d-none");
+      const mensaje = document.getElementById("mensajeExito");
+      mensaje.classList.remove("d-none");
+
+      // Ocultar modal y limpiar después de 3 segundos
+      setTimeout(() => {
+        mensaje.classList.add("d-none");
+        document.getElementById("formReembolso").classList.remove("d-none");
+        modal.style.display = "none";
+        document.getElementById("formReembolso").reset();
+      }, 3000);
+    } else {
+      alert("❌ Hubo un error al enviar la solicitud. Intentalo nuevamente.");
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("❌ Error de conexión con el servidor.");
+  }
+});
+</script>
+
+
+
+
+  <!-- Bootstrap JS (al final para mejor rendimiento) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <a href="https://wa.me/5491123456789" class="whatsapp-float" target="_blank">
+  <i class="bi bi-whatsapp"></i>
+</a>
+</body>
+</html>

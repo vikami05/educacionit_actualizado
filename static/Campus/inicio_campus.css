@@ -1,0 +1,247 @@
+  /* Fuente y cuerpo */
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  background-color: #e0e0e0; /* gris de fondo */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #8fd3f4, #b388ff);
+  color: white;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+}
+
+/* Contenedor principal */
+.campus-container {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 60px); /* navbar incluido */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h4 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.list-group-item.deshabilitado {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Contenido principal */
+.content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pantalla de bienvenida */
+#pantalla-inicial {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#pantalla-inicial h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+#pantalla-inicial p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+#pantalla-inicial ul {
+  text-align: left;
+  margin: 0 auto 1rem auto;
+  max-width: 500px;
+}
+
+/* Videos */
+.ratio {
+  width: 100%;
+  max-width: 720px; /* video más grande */
+  margin-bottom: 20px;
+}
+
+.ratio iframe {
+  border-radius: 8px;
+}
+
+/* Botones */
+/* Botones */
+#btn-hecho {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+#btn-siguiente {
+  align-self: flex-end;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #7dd3fc, #c084fc); /* celeste a violeta */
+  color: white;
+  border: none;
+}
+
+#btn-siguiente:hover {
+  opacity: 0.9;
+}
+
+#btn-pdf {
+  background: #8b5cf6; /* violeta intenso */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+#btn-pdf:hover {
+  background: #7c3aed; /* más oscuro al pasar el mouse */
+}
+
+/* Efecto hover en módulos */
+.modulo-link:hover {
+  text-decoration: none;
+  color: #5b21b6;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .campus-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #btn-siguiente {
+    align-self: center;
+  }
+}
+
+
+/* Temas */
+.tema-item {
+    cursor: pointer;
+}
+
+.tema-item:hover {
+    background-color: #e7f3ff;
+}
+
+/* iFrame para videos */
+iframe {
+    width: 100%;
+    height: 400px;
+}
+
+/* Icono de módulo completado */
+.modulo-completo {
+    color: green;
+    margin-left: 5px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+/* Botón de evaluación final */
+#btn-evaluacion {
+    display: none;
+    margin-top: 20px;
+    font-family: 'Arial Black', sans-serif; /* Cambiar fuente */
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: linear-gradient(90deg, #7c3aed, #3b82f6); /* violeta a azul */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#btn-evaluacion:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+
+
+
+/***Nuevo*/
+.tema-contenido {
+  display: flex;
+  gap: 20px; /* separación entre video y descripción */
+  margin-top: 20px;
+  flex-wrap: wrap; /* para que en pantallas pequeñas se acomode verticalmente */
+}
+
+.video-container {
+  flex: 1 1 50%; /* ocupa aproximadamente la mitad del contenedor */
+  min-width: 300px; /* tamaño mínimo del video */
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* mantiene proporción 16:9 */
+  border-radius: 8px;
+}
+
+.descripcion-container {
+  flex: 1 1 45%; /* ocupa la otra mitad del contenedor */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  min-width: 250px;
+}
+
+
+.titulo-campus {
+  font-size: 5rem;       /* Tamaño grande */
+  font-weight: bold;     /* Negrita */
+  color: #333333;        /* Gris oscuro */
+  text-align: center;    /* Centrado horizontal */
+  margin: 0;             /* Quita márgenes por defecto */
+}
+

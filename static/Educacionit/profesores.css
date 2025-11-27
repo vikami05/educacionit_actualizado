@@ -1,0 +1,119 @@
+ /* --- Estilos Profesores --- */
+#profesores {
+    background-color: #f0f0f0;
+    padding: 60px 0;
+}
+
+#profesores h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2.5rem;
+  color: #0d6efd;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Tarjetas grandes */
+#profesores .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    height: 100%;
+}
+
+#profesores .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+/* Imagen de tarjeta */
+#profesores .card img {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    object-fit: cover;
+    height: 450px;
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+#profesores .card:hover img {
+    transform: scale(1.05);
+}
+
+/* Card Body */
+#profesores .card-body {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+#profesores .card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #457b9d;
+    margin-bottom: 12px;
+}
+
+#profesores .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+/* --- Animación fade-in --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtítulo */
+#profesores p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #profesores h2 {
+        font-size: 2rem;
+    }
+    #profesores p {
+        font-size: 1rem;
+    }
+}
+
+.contenedor_titulo {
+  position: relative;
+  display: inline-block; 
+  margin: 0 auto;  
+}
+
+.contenedor_titulo::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #0d6efd, #6610f2);
+  display: block;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+}
+
+.social-icons a {
+  color: #6c757d; /* gris inicial */
+  font-size: 1.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #0d6efd; /* azul al pasar */
+  transform: scale(1.2);
+}
+

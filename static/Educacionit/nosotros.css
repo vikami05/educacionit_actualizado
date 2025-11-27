@@ -1,0 +1,184 @@
+/* === Tipografía y reset básico === */
+body {
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Gris claro */
+}
+
+h1, h2, h3 {
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 1rem;
+}
+
+/* === Contenedor principal === */
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 40px 20px;
+}
+
+/* === Título de sección === */
+.contenedor_titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.contenedor_titulo::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #0d6efd, #6610f2);
+    display: block;
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+
+
+/* Imagen de la sección Nosotros */
+.nosotros__imagen {
+    flex: 1 1 400px;
+    border-radius: 20px;     /* bordes redondeados */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* sombra suave */
+    max-width: 50%;
+    height: auto;
+}
+
+/* === Sección Nosotros === */
+.nosotros {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.nosotros__contenido {
+    flex: 1 1 500px;
+    animation: fadeInLeft 1s ease forwards;
+}
+
+.nosotros__contenido p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+/* === Sección Qué nos define con degradé === */
+.comprar {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #89CFF0, #8A2BE2);
+    border-radius: 20px;
+    margin-bottom: 80px;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.comprar_titulo {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 50px;
+    position: relative;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.comprar_titulo::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #fff;
+    display: block;
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+.bloques {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.bloque {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.bloque:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* === Sección Logros === */
+.logros {
+    background: linear-gradient(135deg, #89CFF0, #8A2BE2);
+    border-radius: 15px;
+    padding: 60px 20px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.logros_titulo {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #ffffff;
+    position: relative;
+}
+
+.logros_titulo::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #fff;
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+.logro-card {
+    background: #fff; /* Tarjetas blancas */
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/* === Animaciones suaves === */
+@keyframes fadeInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* === Responsive === */
+@media (max-width: 991px) {
+    .nosotros {
+        flex-direction: column;
+    }
+    .nosotros__imagen, .nosotros__contenido {
+        flex: 1 1 100%;
+    }
+    .bloques {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.fondo-gris {
+    background-color: #f5f5f5; /* gris */
+    min-height: 100vh;
+}

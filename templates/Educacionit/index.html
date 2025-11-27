@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EducaciónIT</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='Educacionit/style.css') }}">
+
+  <!-- Iconos de Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- BootStrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarResponsive">
+
+  <!-- Inicio Section -->
+  <div id="home">
+
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <img src="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}" alt="Logo Educación IT" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('nosotros') }}">¿Quiénes Somos?</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('profesores') }}">Profesores</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('cursos') }}">Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a></li>
+            <li class="nav-item">
+              <a class="campus-btn" href="{{ url_for('inicio') }}">Campus Virtual</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navegación -->
+
+    <!-- Landing Page Section -->
+    <div class="landing">
+      <div class="home-wrap">
+        <div class="home-inner"></div>
+      </div>
+    </div>
+
+    <div class="caption text-center">
+      <h1>Bienvenidos a Educación IT</h1>
+      <h3>Formación online y accesible</h3>
+      <a class="btn btn-outline-light btn-lg" href="#cursos">Inscribite</a>
+
+      <!-- Bloque de certificación -->
+      <div class="certificacion mt-4">
+        <p>Certificados oficiales avalados por la <strong>Universidad Tecnológica Nacional</strong></p>
+        <img src="{{ url_for('static', filename='Educacionit/Imágenes/logoutnblanco.png') }}" alt="Logo Universidad" class="logo-cert">
+      </div>
+    </div>
+  </div>
+
+
+<!--Catálogo Section-->
+<section id="catalogo" class="py-5">
+  <div class="container text-center">
+    <h2 class="heading">Catálogo</h2>
+    <div class="heading-underline mx-auto"></div>
+
+    <div class="row mt-4 g-4">
+      <!-- Programación y Desarrollo -->
+      <div class="col-md-4">
+        <div class="catalogo-card">
+          <i class="bi bi-code-slash icon-feature"></i>
+          <h5 class="mt-3">Programación y Desarrollo</h5>
+          <p>Aprendé a crear aplicaciones, sitios web y sistemas desde cero con lenguajes y frameworks modernos.</p>
+          <a href="{{ url_for('cursos') }}#programacion-desarrollo" class="btn btn-light mt-3">Ver Cursos →</a>
+        </div>
+      </div>
+      <!-- Diseño UI/UX -->
+      <div class="col-md-4">
+        <div class="catalogo-card">
+          <i class="bi bi-brush-fill icon-feature"></i>
+          <h5 class="mt-3">Diseño UI/UX</h5>
+          <p>Domina el diseño de interfaces atractivas y experiencias de usuario efectivas centradas en las personas.</p>
+          <a href="{{ url_for('cursos') }}#diseno-uiux" class="btn btn-light mt-3">Ver Cursos →</a>
+        </div>
+      </div>
+      <!-- Inteligencia Artificial -->
+      <div class="col-md-4">
+        <div class="catalogo-card">
+          <i class="bi bi-cpu-fill icon-feature"></i>
+          <h5 class="mt-3">Inteligencia Artificial</h5>
+          <p>Descubrí cómo entrenar modelos, aplicar machine learning y usar IA para resolver problemas reales.</p>
+          <a href="{{ url_for('cursos') }}#inteligencia-artifial" class="btn btn-light mt-3">Ver Cursos →</a>
+        </div>
+      </div>
+      <!-- Data -->
+      <div class="col-md-6">
+        <div class="catalogo-card">
+          <i class="bi bi-bar-chart-line-fill icon-feature"></i>
+          <h5 class="mt-3">Data</h5>
+          <p>Analizá, limpiá y visualizá datos para transformar la información en decisiones estratégicas.</p>
+          <a href="{{ url_for('cursos') }}#bigdata" class="btn btn-light mt-3">Ver Cursos →</a>
+        </div>
+      </div>
+      <!-- Marketing Digital -->
+      <div class="col-md-6">
+        <div class="catalogo-card">
+          <i class="bi bi-megaphone-fill icon-feature"></i>
+          <h5 class="mt-3">Marketing Digital</h5>
+          <p>Aprendé a crear campañas digitales, SEO, redes sociales y estrategias de crecimiento online.</p>
+          <a href="{{ url_for('cursos') }}#marketing-digital" class="btn btn-light mt-3">Ver Cursos →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End Catálogo Section-->
+
+
+<!-- Nueva Sección: Talento y Beneficios -->
+<section id="talento" class="py-5 section-bg">
+  <div class="container">
+    <div class="row align-items-center text-white">
+      
+      <!-- Columna Izquierda -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h1 class="display-5 fw-bold" style="font-family: 'Quicksand', sans-serif;">
+          Conviértete en el talento que buscan las empresas
+        </h1>
+        <p class="lead mt-3">
+          Diseñamos programas en conjunto con empresas líderes para que impulses tu futuro.
+        </p>
+      </div>
+
+      <!-- Columna Derecha -->
+      <div class="col-md-6">
+        <h3 class="mb-4">¿Por qué estudiar en EducaciónIT?</h3>
+        
+        <div class="accordion" id="accordionEducacionIT">
+          
+          <!-- Foco en empleabilidad -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#empleabilidad" aria-expanded="false" aria-controls="empleabilidad">
+                <i class="bi bi-briefcase-fill me-2 text-primary"></i> Foco en empleabilidad
+              </button>
+            </h2>
+            <div id="empleabilidad" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionEducacionIT">
+              <div class="accordion-body">
+                Te preparamos con las habilidades que más valoran las empresas y acompañamos tu camino de inserción laboral.
+              </div>
+            </div>
+          </div>
+
+          <!-- Expertos en EducaciónIT -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#expertos" aria-expanded="false" aria-controls="expertos">
+                <i class="bi bi-person-badge-fill me-2 text-success"></i> Expertos en EducaciónIT
+              </button>
+            </h2>
+            <div id="expertos" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionEducacionIT">
+              <div class="accordion-body">
+                Contamos con instructores líderes en la industria que llevan la experiencia real de trabajo al aula.
+              </div>
+            </div>
+          </div>
+
+          <!-- Aprendizaje aplicado -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#aprendizaje" aria-expanded="false" aria-controls="aprendizaje">
+                <i class="bi bi-lightbulb-fill me-2 text-warning"></i> Aprendizaje aplicado
+              </button>
+            </h2>
+            <div id="aprendizaje" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionEducacionIT">
+              <div class="accordion-body">
+                Nuestras clases son 100% prácticas, con proyectos y casos reales que potencian tu aprendizaje.
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- Fin Acordeón -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Nueva fila con tarjetas -->
+  <div class="row mt-5 text-center justify-content-center">
+    
+    <!-- Tarjeta izquierda -->
+    <div class="col-md-6 col-lg-5 mb-4">
+      <div class="card h-100 shadow-lg border-0 rounded-4 text-white"
+           style="background: rgba(255, 255, 255, 0.15); 
+                  backdrop-filter: blur(12px); 
+                  -webkit-backdrop-filter: blur(12px);
+                  border: 1px solid rgba(255, 255, 255, 0.2);">
+        <div class="card-body p-4">
+          <h3 class="fw-bold mb-3" style="font-family: 'Quicksand', sans-serif;">Certificado avalado por la UTN</h3>
+          <p class="lead mb-4">
+            Al terminar, recibís un certificado avalado por la <strong>Universidad Tecnológica Nacional</strong>, que confían en nuestro modelo educativo. Una credencial que abre puertas y oportunidades.
+          </p>
+          <img src="{{ url_for('static', filename='Educacionit/Imágenes/Certificado corporativo color azul A4.png') }}" alt="Certificado UTN" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta derecha -->
+    <div class="col-md-6 col-lg-5 mb-4">
+      <div class="card h-100 shadow-lg border-0 rounded-4 text-white"
+           style="background: rgba(255, 255, 255, 0.15); 
+                  backdrop-filter: blur(12px); 
+                  -webkit-backdrop-filter: blur(12px);
+                  border: 1px solid rgba(255, 255, 255, 0.2);">
+        <div class="card-body p-4">
+          <h3 class="fw-bold mb-3" style="font-family: 'Quicksand', sans-serif;">Clases online y en vivo</h3>
+          <p class="lead mb-4">
+            Clases online asincrónicas a través de nuestro campus virtual, con acceso a materiales, recursos y actividades disponibles las 24 horas, para que puedas aprender a tu propio ritmo desde cualquier lugar.
+          </p>
+          <img src="{{ url_for('static', filename='Educacionit/Imágenes/clasesvirtuales.jpg') }}" alt="Clases online y en vivo" class="img-fluid rounded">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Sección de Testimonios -->
+<section id="testimonios" class="py-5 bg-light mt-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5" style="font-family: 'Quicksand', sans-serif; color:#1e3c72;">
+      Lo que dicen nuestros estudiantes
+    </h2>
+
+    <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Testimonio 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex flex-column align-items-center">
+            <img src="{{ url_for('static', filename='Educacionit/Imágenes/maria.jpg') }}" class="rounded-circle mb-4" alt="Estudiante 1" width="100" height="100">
+            <p class="lead fst-italic">
+              "La experiencia en EducaciónIT superó mis expectativas. Los profesores son excelentes y el enfoque práctico me ayudó a conseguir trabajo rápidamente."
+            </p>
+            <h5 class="fw-bold mt-2">María González</h5>
+            <small class="text-muted">Desarrolladora Front-End</small>
+          </div>
+        </div>
+
+        <!-- Testimonio 2 -->
+        <div class="carousel-item">
+          <div class="d-flex flex-column align-items-center">
+            <img src="{{ url_for('static', filename='Educacionit/Imágenes/carlos.jpg') }}" class="rounded-circle mb-4" alt="Estudiante 2" width="100" height="100">
+            <p class="lead fst-italic">
+              "Gracias a las clases en vivo pude aprender a mi ritmo, interactuando con mis compañeros y aplicando lo aprendido en proyectos reales."
+            </p>
+            <h5 class="fw-bold mt-2">Carlos Pérez</h5>
+            <small class="text-muted">Analista de Datos</small>
+          </div>
+        </div>
+
+        <!-- Testimonio 3 -->
+        <div class="carousel-item">
+          <div class="d-flex flex-column align-items-center">
+            <img src="{{ url_for('static', filename='Educacionit/Imágenes/lucia.jpg') }}" class="rounded-circle mb-4" alt="Estudiante 3" width="100" height="100">
+            <p class="lead fst-italic">
+              "El certificado de la UTN me abrió puertas en el mundo laboral. Recomiendo 100% este programa."
+            </p>
+            <h5 class="fw-bold mt-2">Lucía Fernández</h5>
+            <small class="text-muted">Ingeniera de Software</small>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controles del carrusel -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white text-dark pt-5">
+  <div class="container">
+
+    <!-- Logo y Redes Sociales -->
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <img src="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}" alt="EducaciónIT" style="height: 60px;">
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="https://www.instagram.com/" target="_blank" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-instagram" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="https://wa.me/549XXXXXXXXXX" target="_blank" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-whatsapp" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="tel:+549XXXXXXXXXX" class="text-dark me-3" style="text-decoration: none;">
+          <i class="bi bi-telephone-fill" style="font-size: 1.5rem;"></i>
+        </a>
+        <a href="mailto:contacto@educacionit.com.ar" class="text-dark" style="text-decoration: none;">
+          <i class="bi bi-envelope-fill" style="font-size: 1.5rem;"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ¿Te podemos ayudar? -->
+    <div class="row mb-4">
+      <div class="col text-center">
+        <h5 class="fw-bold" style="font-family: 'Quicksand', sans-serif;">¿Te podemos ayudar?</h5>
+        <p class="mb-0" style="font-size: 1.2rem;">
+          <a href="tel:+549XXXXXXXXXX" class="text-dark" style="text-decoration: none;">📞 +54 9 XXXX XXXX</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Derechos reservados -->
+    <div class="row">
+      <div class="col text-center">
+        <p class="mb-0" style="font-family: 'Quicksand', sans-serif;">
+          &copy; 2025 EducaciónIT. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  const cursos = document.querySelector('#cursos');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const offsetTop = cursos.offsetTop - window.innerHeight / 1.2;
+
+    if (scrollTop > offsetTop) {
+      cursos.classList.add('aparecer');
+    }
+  });
+
+
+</script>
+
+</body>
+</html>

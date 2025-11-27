@@ -1,0 +1,422 @@
+/* === BASE === */
+body {
+  background-color: #f3f2f2;
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+
+}
+
+/* === HEADER / NAVBAR === */
+header {
+  background-color: #ffffff;
+  padding: 10px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .1rem;
+  background: rgba(0,0,0,0.6)!important;
+}
+
+nav img {
+  height: 60px;
+  width: auto;
+}
+
+.navbar-brand img{
+height: 4rem;
+}
+.navbar-nav li{
+padding-right:  .7rem;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: rgb(131, 87, 211);
+  padding-top: .8rem;
+}
+
+.navbar-light .navbar-nav .nav-link.active, 
+.navbar-light .navbar-nav .nav-link:hover{
+  color: rgb(154, 218, 248);
+}
+
+
+.navbar-nav .nav-link {
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #392da8;
+}
+
+/* === LANDING / HOME === */
+.home-inner{
+  background-image: url(Imágenes/FotoPrincipal.jpg);
+}
+
+.caption{
+  width: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 38%;
+  z-index: 1;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Títulos */
+.caption h1{
+  font-size: 3.8rem;
+  font-weight: 700;
+  letter-spacing: .3rem;
+  text-shadow: .1rem .1rem .8rem black;
+  padding-bottom: 1rem;
+}
+
+.caption h3 {
+  font-size: 2rem;
+  text-shadow: .1rem .1rem .5rem black;
+  padding-bottom: 2rem; /* más separación respecto al botón */
+}
+
+/* Botón */
+.btn-lg{
+  border-width: medium;
+  border-radius: 0;
+  padding: .6rem 1.3rem;
+  font-size: 1.1rem;
+}
+
+/* Certificación */
+.caption .certificacion {
+  text-align: center;
+  margin-top: 2rem; /* separación flexible */
+}
+
+.caption .certificacion p {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.caption .certificacion .logo-cert {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .caption .certificacion p {
+    font-size: 0.9rem;
+  }
+  .caption .certificacion .logo-cert {
+    max-width: 80px;
+  }
+}
+
+
+
+/* === BOOTSTRAP FIXES === */
+[class*="col-"] {
+  padding: 1rem;
+}
+
+.row, .container-fluid {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.fixed-top {
+  -webkit-backface-visibility: hidden;
+}
+
+/* === LANDING FIXED BACKGROUND === */
+.landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: table;
+  z-index: -1;
+}
+
+.home-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-inner {
+  position: fixed;
+  display: table;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* === iOS FIXED BACKGROUND === */
+.fixed-background {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.fixed-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -999 !important;
+}
+
+.fixed {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* === SECCIÓN CURSOS === */
+#cursos h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+}
+
+#cursos p.lead {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+#cursos p.lead {
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#cursos {
+  margin-top: 100px; /* más separación de la landing */
+  padding: 80px 20px; /* espacio interno */
+  background: linear-gradient(135deg, #f0f4ff, #e0dfff); /* degradado celeste-violeta */
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  opacity: 0; /* inicial invisible para animación */
+  transform: translateY(30px); /* desplazada hacia abajo */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Animación al hacer scroll */
+#cursos.aparecer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Títulos dentro de cursos */
+#cursos h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff; /* azul oscuro */
+  margin-bottom: 20px;
+}
+
+#cursos p.lead {
+  font-size: 1.2rem;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* === SECCIÓN CATÁLOGO === */
+#catalogo {
+  background-color: #f9f9f9;
+}
+
+#catalogo .heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.heading-underline {
+  width: 80px;
+  height: 4px;
+  background-color: #392da8;
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+/* === CARD DE CADA CATEGORÍA === */
+.catalogo-card {
+  background: linear-gradient(135deg, #8ec5fc, #e0c3fc); /* celeste → violeta */
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #000000;
+}
+
+.catalogo-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* Íconos dentro de cards */
+.catalogo-card .icon-feature {
+  font-size: 3rem;
+  color: #000000;
+  transition: transform 0.3s ease;
+}
+
+.catalogo-card:hover .icon-feature {
+  transform: scale(1.2);
+}
+
+#catalogo h5 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+#catalogo p {
+  font-size: 1rem;
+  margin: 0 auto;
+  max-width: 280px;
+}
+
+.catalogo-card .btn {
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.catalogo-card .btn:hover {
+  background-color: #fff;
+  color: #392da8;
+  transform: translateY(-3px);
+}
+
+
+/*FOTO FINAL*/
+
+/* Fondo con efecto parallax */
+.section-bg {
+  background: url("Imágenes/ImagenFinal.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+/* Para oscurecer un poco el fondo y que el texto se lea mejor */
+.section-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* sombra negra transparente */
+  z-index: -1;
+}
+
+/* Aseguramos que el contenido esté encima */
+.section-bg .container {
+  position: relative;
+  z-index: 2;
+}
+
+#testimonios {
+  background: linear-gradient(135deg, #8ec5fc, #e0c3fc); /* celeste → violeta */
+  color: #ffffff; /* para contraste */
+  padding: 80px 20px;
+  border-radius: 20px; /* opcional, suaviza bordes */
+}
+
+#testimonios h2 {
+  color: #1e3c72; /* mantiene el color del título */
+}
+
+/* Ajuste de los textos de testimonios */
+#testimonios .carousel-item p,
+#testimonios .carousel-item h5,
+#testimonios .carousel-item small {
+  color: #ffffff; /* texto legible sobre degradé */
+}
+
+/* Ajuste de imágenes circulares si se desea un borde blanco */
+#testimonios .carousel-item img {
+  border: 3px solid rgba(255,255,255,0.7);
+}
+
+#cursos {
+  /* Degradé de celeste a violeta */
+  background: linear-gradient(135deg, #89CFF0, #8A2BE2);
+  color: white; /* Opcional, para que el texto resalte */
+  padding: 60px 0; /* Mantiene el padding de py-5 */
+  text-align: center;
+}
+
+
+#cursos h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+.campus-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    background: linear-gradient(90deg, #007bff, #6f42c1) !important; /* azul a violeta */
+    color: #fff !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 5px;      /* baja un poquito el botón */
+    align-self: center;    /* centra verticalmente si el contenedor es flex */
+  }
+
+  .campus-btn:hover {
+    filter: brightness(1.1);
+    text-decoration: none;
+  }
+
+/*FIN DEL CSS DE LA PÁGINA DE INICIO(INDEX)*/
+
+
+
+
+
+
+
+/*PÁGINA CURSOS*/
+
+ 
