@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Rápida - Usuario Registrado</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='Educacionit/Imágenes/EducacioIT.jpg') }}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Educacionit/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Educacionit/compra_rapida.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Compra Rápida</h1>
+            <p>Comprá otro curso con tus datos existentes</p>
+        </div>
+
+        <!-- 🎓 Curso seleccionado -->
+        {% if curso %}
+<div class="curso-box">
+    <p class="curso-box-title">
+         Vas a comprar: <strong>{{ curso.titulo }}</strong>
+    </p>
+    <p class="curso-box-precio">
+        Precio: ${{ "{:,.0f}".format(curso.precio) }}
+    </p>
+</div>
+{% endif %}
+
+        <div class="info-box">
+            <p><strong>💡 ¿Cómo funciona?</strong></p>
+            <p>Ingresá tu email y contraseña para confirmar tu usuario registrado. Si ya estás en el sistema, te llevaremos directo al formulario de pago.</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('validar_usuario_existente') }}" method="POST">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Verificar y Continuar →
+            </button>
+        </form>
+
+        <a href="{{ url_for('cursos') }}" onclick="event.preventDefault(); history.back();" class="btn-secondary">
+            ← Volver al formulario completo
+        </a>
+
+    </div>
+</body>
+</html>
+
