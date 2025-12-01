@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Virtual - IA para contenido visual</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Campus/Cursos/IAparaContenidos/campus.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-text text-white">Bienvenido al Campus EducaciónIT</span>
+
+    <div class="dropdown">
+      <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+         href="#" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle user-icon fs-4"></i>
+        <span class="ms-2">{{ usuario.nombre if usuario else 'Usuario' }}</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+        <li>
+          <a class="dropdown-item" href="{{ url_for('inicio_campus') }}">
+            <i class="bi bi-house-door me-2"></i>Inicio
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('mis_cursos') }}">
+            <i class="bi bi-journal-text me-2"></i>Mis cursos
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('logout') }}">
+            <i class="bi bi-box-arrow-right me-2"></i>Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="campus-container">
+  <aside class="sidebar">
+    <h4>IA para contenido visual</h4>
+    <ul class="list-group" id="lista-modulos"></ul>   
+  </aside>
+
+  <main class="content d-flex flex-column justify-content-center align-items-center text-center">
+    <div id="pantalla-inicial">
+      <h2>Bienvenid@ al Curso de IA para contenido visual</h2>
+      <p class="mt-3">
+        En este curso aprenderás los fundamentos de LA IA para contenido visual, desde lo más básico hasta conceptos avanzados.
+        Contamos con <strong>4 módulos</strong> que incluyen:
+      </p>
+      <ul class="text-start mx-auto" style="max-width:500px;">
+        <li>Fundamentos de la IA y el Contenido Visual</li>
+        <li>Herramientas y Técnicas de Generación Visual (Generative AI)</li>
+        <li>Aplicaciones Profesionales y Proyectos Prácticos</li>
+        <li>Técnicas Avanzadas y Desarrollo Personalizado</li>
+      </ul>
+      <p class="mt-3">
+        Ante cualquier duda, podés escribir al correo de la profesora <strong>María Lopez</strong>: 
+        <a href="mailto:maria.lopez@educacionit.com">maria.lopez@educacionit.com</a>
+      </p>
+      <button id="btn-comenzar" class="btn btn-primary mt-3">Comenzar</button>
+    </div>
+
+    <div id="contenido-curso" style="display:none; width:100%;">
+      <h2 id="titulo-leccion"></h2>
+      <div id="contenido-leccion"></div>
+      <div class="d-flex justify-content-end">
+        <button id="btn-siguiente" class="btn btn-primary mt-3" onclick="siguienteTema()" disabled>Siguiente</button>
+      </div>
+    </div>
+
+    <!--Acá marca en rojo, pero, aún asi funciona el script. Solamente no es compatible, porque no lo reconoce el Visual, pero si funciona-->
+   <button id="btn-evaluacion"
+        class="btn btn-warning mt-3"
+        onclick="window.location.href='{{ url_for('curso_iaparacontenidos_prueba') }}';"
+        style="display:none;">
+    Realizar Evaluación Final
+   </button>
+  </main>
+</div>
+
+<script>
+const curso = [
+    {
+        titulo: "Módulo 1: Introducción",
+        temas: [
+        {
+            titulo: "Fundamentos de la IA y el Contenido Visual",
+            contenido: `
+            <div class="tema-contenido">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XuWMWPwdlik?si=jV_X4lhA2mfZmSbY"  title="Video Instalación de Python" allowfullscreen></iframe>
+            </div>
+            <div class="descripcion-container text-center" style="max-width: 800px; margin: 0 auto;">
+                <h3>Módulo 1: Fundamentos de la IA y el Contenido Visual</h3>
+                <p>
+                
+                    Curso: IA para Contenido Visual, Proyectos y Aplicaciones 🧠🖼️
+                    Este curso está estructurado para proporcionar una comprensión integral de cómo la Inteligencia Artificial (IA) se utiliza para generar, manipular y analizar contenido visual.
+
+                    Módulo 1: Fundamentos de la IA y el Contenido Visual
+                    Objetivo: Establecer una base sólida en los conceptos clave de la IA y su relación con las imágenes y el video.
+
+                    Temas Clave
+                    ¿Qué es la IA Generativa?
+
+                    Definición, historia y diferencia con la IA Discriminativa.
+
+                    Visión por Computadora (Computer Vision):
+
+                    Conceptos básicos: reconocimiento de imágenes, detección de objetos y segmentación.
+
+                    Algoritmos y Redes Neuronales Fundamentales:
+
+                    Introducción a las Redes Neuronales Convolucionales (CNNs) y su rol en el procesamiento de imágenes.
+
+                    Concepto de Aprendizaje Profundo (Deep Learning).
+
+                    Tipos de Contenido Visual:
+
+                    Imágenes, videos, gráficos 3D. Introducción a los Prompts (instrucciones de texto).
+                </p>
+                <p>
+                Ante cualquier duda, puedes comunicarte con el profesor 
+                <a href="mailto:maria.lopez@educacionit.com" style="text-decoration: none; color: #0d6efd; display: inline-flex; align-items: center; gap: 5px;">
+                    <i class="bi bi-envelope-fill"></i> maria.lopez@educacionit.com
+                </a>
+                </p>
+            </div>
+            </div>`
+        },
+        ]
+    },
+  {
+    titulo: "Módulo 2: Herramientas y Técnicas de Generación Visual (Generative AI)",
+    temas: [
+      {
+        titulo: "Herramientas y Técnicas de Generación Visual (Generative AI)",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe <iframe width="560" height="315" src="https://www.youtube.com/embed/yvdzYm2hPeM?si=xj5Sl7ssBF2uTPuN"  title="Video Variables" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p>Objetivo: Explorar las principales arquitecturas y herramientas utilizadas para crear contenido visual.
+
+                Temas Clave
+                Redes Generativas Antagónicas (GANs - Generative Adversarial Networks):
+
+                Funcionamiento del sistema "Generador vs. Discriminador". Aplicaciones en la generación de imágenes hiperrealistas (ej. StyleGAN).
+
+                Modelos de Difusión (Diffusion Models):
+
+                Cómo funcionan (proceso de "ruido y denoising"). La arquitectura dominante actual (ej. Stable Diffusion, DALL-E, Midjourney).
+
+                Text-to-Image y Image-to-Image:
+
+                Dominio del prompt engineering (ingeniería de prompts) para obtener resultados específicos y de alta calidad.
+
+                Técnicas de Inpainting (relleno) y Outpainting (expansión).
+
+                Generación de Video y 3D:
+
+                Introducción a la IA que genera movimiento y modelos tridimensionales (ej. Runway, Luma AI).</p>
+          </div>
+        </div>`
+      }
+    ]
+  },
+  {
+    titulo: "Módulo 3: Aplicaciones Profesionales y Proyectos Prácticos",
+    temas: [
+      {
+        titulo: "Aplicaciones Profesionales y Proyectos Prácticos",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe   src="https://www.youtube.com/embed/oodW_W15rLY?si=Z8FrhfkoAd_vTc87" title="Video Condicionales" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p> Objetivo: Mostrar cómo se implementa la IA visual en diferentes industrias y escenarios de proyectos reales.
+
+            Temas Clave
+            Diseño Gráfico y Marketing:
+
+            Creación automatizada de assets (elementos visuales), publicidad personalizada y diseño de logotipos.
+
+            Cine y Entretenimiento:
+
+            Generación de storyboards, fondos (backgrounds) y efectos visuales (VFX).
+
+            Arquitectura y Diseño de Productos:
+
+            Visualizaciones rápidas (renders), prototipado y estilos alternativos.
+
+            E-commerce y Fotografía:
+
+            Cambio de fondo y up-scaling (mejora de resolución) automatizado para catálogos.
+
+            Deepfakes y consideraciones éticas (introducción).</p>
+          </div>
+        </div>`
+      }
+    ]
+  },
+  {
+    titulo: "Módulo 4: Técnicas Avanzadas y Desarrollo Personalizado",
+    temas: [
+      {
+        titulo: "Técnicas Avanzadas y Desarrollo Personalizado",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe   src="https://www.youtube.com/embed/hwZuV7uQlZs?si=Ru0kkzocGwC_hDUF"  title="Video Diccionarios" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p> Objetivo: Explorar métodos avanzados para personalizar y controlar modelos de IA generativa.
+
+            Temas Clave
+            Personalización de Modelos:
+
+            Introducción a LoRA (Low-Rank Adaptation) y Dreambooth para entrenar modelos con tus propios estilos o sujetos.
+
+            Control Fino de la Generación:
+
+            Uso de ControlNet para imponer la composición, la pose o la estructura de una imagen de origen sobre una nueva generación de IA.
+
+            IA y Datos Sintéticos:
+
+            Generación de datos visuales artificiales para entrenar otros modelos de Visión por Computadora (ej. para robots o vehículos autónomos).
+
+            El Futuro de la IA Visual:
+
+            Tendencias emergentes: modelos multimodales (texto + video + audio), real-time generation.</p>
+          </div>
+        </div>`
+      }
+    ]
+  }
+];
+
+
+
+
+
+// ============================================
+// VARIABLES GLOBALES
+// ============================================
+let moduloActual = 0;
+let temaActual = 0;
+const ID_CURSO = 3; // ID del curso 
+
+const listaModulos = document.getElementById('lista-modulos');
+const tituloLeccion = document.getElementById('titulo-leccion');
+const contenidoLeccion = document.getElementById('contenido-leccion');
+const btnSiguiente = document.getElementById('btn-siguiente');
+const btnComenzar = document.getElementById('btn-comenzar');
+const btnEvaluacion = document.getElementById('btn-evaluacion');
+
+// ============================================
+// FUNCIONES PARA INTERACTUAR CON LA API
+// ============================================
+
+// Guardar progreso en la base de datos
+async function guardarProgreso() {
+  const progreso = {
+    modulo_actual: moduloActual,
+    tema_actual: temaActual,
+    datos_progreso: curso.map(mod => ({
+      habilitado: mod.habilitado,
+      temas: mod.temas.map(t => ({
+        hecho: t.hecho,
+        habilitado: t.habilitado
+      }))
+    }))
+    // ✅ NO enviar curso_completado aquí
+  };
+
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(progreso)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('Error al guardar progreso:', data.error);
+    } else {
+      console.log('✅ Progreso guardado correctamente');
+    }
+  } catch (error) {
+    console.error('Error de conexión al guardar progreso:', error);
+  }
+}
+
+// Cargar progreso desde la base de datos
+async function cargarProgresoBaseDatos() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Error al cargar progreso:', data.error);
+      return false;
+    }
+
+    if (!data.existe) {
+      return false; // No hay progreso guardado
+    }
+
+    // Restaurar estado de módulos y temas
+    if (data.datos_progreso) {
+      data.datos_progreso.forEach((mod, i) => {
+        if (curso[i]) {
+          curso[i].habilitado = mod.habilitado;
+          mod.temas.forEach((t, j) => {
+            if (curso[i].temas[j]) {
+              curso[i].temas[j].hecho = t.hecho;
+              curso[i].temas[j].habilitado = t.habilitado;
+            }
+          });
+        }
+      });
+    }
+
+    moduloActual = data.modulo_actual;
+    temaActual = data.tema_actual;
+
+    return true;
+  } catch (error) {
+    console.error('Error de conexión al cargar progreso:', error);
+    return false;
+  }
+}
+
+// Marcar curso como completado
+async function aprobarCurso() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}/completar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log('✅ Curso completado en la base de datos');
+      mostrarCursoCompletadoGlobal();
+    } else {
+      console.error('Error al completar curso:', data.error);
+    }
+  } catch (error) {
+    console.error('Error de conexión al aprobar curso:', error);
+  }
+}
+
+// Verificar si el curso ya fue completado
+async function verificarCursoCompletado() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`);
+    const data = await response.json();
+
+    if (response.ok && data.existe && data.curso_completado) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Error al verificar curso completado:', error);
+    return false;
+  }
+}
+
+// ============================================
+// INICIALIZACIÓN DE MÓDULOS Y TEMAS
+// ============================================
+curso.forEach(m => {
+  m.habilitado = false;
+  m.temas.forEach(t => {
+    t.hecho = false;
+    t.habilitado = false;
+  });
+});
+
+// ============================================
+// CARGAR MÓDULOS EN SIDEBAR
+// ============================================
+function cargarModulos() {
+  listaModulos.innerHTML = "";
+  curso.forEach((modulo, i) => {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item');
+    if (!modulo.habilitado) li.classList.add('deshabilitado');
+
+    const todosHechos = modulo.temas.every(t => t.hecho);
+    const iconoCheck = todosHechos ? `<i class="bi bi-check2 modulo-completo"></i>` : "";
+
+    li.innerHTML = `
+      <a class="modulo-link" data-bs-toggle="collapse" href="#modulo${i}" role="button">
+        ${modulo.titulo} ${iconoCheck} <i class="bi bi-chevron-down"></i>
+      </a>
+      <ul class="list-group collapse" id="modulo${i}"></ul>
+    `;
+    listaModulos.appendChild(li);
+
+    const ulTemas = li.querySelector('ul');
+    modulo.temas.forEach((tema, j) => {
+      const temaLi = document.createElement('li');
+      temaLi.classList.add('list-group-item', 'tema-item');
+      temaLi.textContent = tema.titulo;
+
+      if (tema.habilitado) {
+        temaLi.style.cursor = 'pointer';
+        temaLi.style.opacity = '1';
+        temaLi.onclick = () => mostrarTema(i, j);
+      } else {
+        temaLi.style.cursor = 'not-allowed';
+        temaLi.style.opacity = '0.5';
+      }
+
+      ulTemas.appendChild(temaLi);
+    });
+  });
+}
+
+// ============================================
+// MOSTRAR TEMA
+// ============================================
+async function mostrarTema(m, t) {
+  if (!curso[m].habilitado || !curso[m].temas[t].habilitado) {
+    alert("Debes completar los temas anteriores primero.");
+    return;
+  }
+
+  console.log(`🎯 Mostrando tema: Módulo ${m}, Tema ${t}`);
+
+  moduloActual = m;
+  temaActual = t;
+  const tema = curso[m].temas[t];
+  tituloLeccion.textContent = tema.titulo;
+  contenidoLeccion.innerHTML = tema.contenido;
+
+  let botonesHTML = `<button class="btn btn-success" id="btn-hecho">Marcar como hecho</button>`;
+  if (m === 1 && t === 1) {
+    botonesHTML += `<button class="btn btn-primary ms-2" id="btn-pdf" onclick="window.open('{{ url_for('static', filename='Material/ia_avanzada.pdf') }}', '_blank')">Ver PDF de práctica</button>`;
+  }
+
+  const contenedorBotones = document.createElement('div');
+  contenedorBotones.id = 'botones-leccion';
+  contenedorBotones.className = 'd-flex gap-2 mt-3 justify-content-end';
+  contenedorBotones.innerHTML = botonesHTML;
+  contenidoLeccion.appendChild(contenedorBotones);
+
+  btnSiguiente.disabled = true;
+  btnSiguiente.style.display = (m === curso.length - 1 && t === curso[m].temas.length - 1)
+    ? 'none' : 'inline-block';
+
+  // ✅ Verificar si el tema ya está marcado como hecho
+  const btnHecho = document.getElementById('btn-hecho');
+  if (tema.hecho) {
+    btnHecho.disabled = true;
+    btnHecho.textContent = '✓ Completado';
+    btnHecho.classList.remove('btn-success');
+    btnHecho.classList.add('btn-secondary');
+    btnSiguiente.disabled = false;
+  } else {
+    btnHecho.onclick = () => marcarComoHecho(m, t);
+  }
+
+  // ✅ CRÍTICO: Verificar estado del botón de evaluación
+  await verificarMostrarBotonEvaluacion();
+  
+  await guardarProgreso();
+}
+
+// ============================================
+// MARCAR TEMA COMO HECHO
+// ============================================
+async function marcarComoHecho(m, t) {
+  curso[m].temas[t].hecho = true;
+  
+  // Deshabilitar el botón inmediatamente
+  const btnHecho = document.getElementById('btn-hecho');
+  if (btnHecho) {
+    btnHecho.disabled = true;
+    btnHecho.textContent = '✓ Completado';
+    btnHecho.classList.remove('btn-success');
+    btnHecho.classList.add('btn-secondary');
+  }
+  
+  btnSiguiente.disabled = false;
+
+  if (t + 1 < curso[m].temas.length) {
+    curso[m].temas[t + 1].habilitado = true;
+  } else if (m + 1 < curso.length) {
+    curso[m + 1].habilitado = true;
+    curso[m + 1].temas[0].habilitado = true;
+  }
+
+  await guardarProgreso();
+  cargarModulos();
+  
+  // ✅ Verificar después de guardar
+  await verificarMostrarBotonEvaluacion();
+}
+
+// ============================================
+// VERIFICAR SI MOSTRAR BOTÓN DE EVALUACIÓN
+// ============================================
+async function verificarMostrarBotonEvaluacion() {
+  console.log('🔍 Verificando estado del botón de evaluación...');
+  
+  // ✅ PASO 1: SIEMPRE verificar primero si el curso está completado en la BD
+  const completado = await verificarCursoCompletado();
+  
+  console.log('📊 Estado del curso:', completado ? '✅ Completado' : '⏳ En progreso');
+  
+  // Si ya está completado, NUNCA mostrar el botón
+  if (completado) {
+    btnEvaluacion.style.display = 'none';
+    console.log('🔒 Curso completado - Botón de evaluación OCULTO permanentemente');
+    return;
+  }
+  
+  // ✅ PASO 2: Verificar si estamos en el último tema
+  const ultimoModulo = curso.length - 1;
+  const ultimoTema = curso[ultimoModulo].temas.length - 1;
+  
+  console.log(`📍 Ubicación actual: Módulo ${moduloActual}/${ultimoModulo}, Tema ${temaActual}/${ultimoTema}`);
+  
+  if (moduloActual !== ultimoModulo || temaActual !== ultimoTema) {
+    // No estamos en el último tema
+    btnEvaluacion.style.display = 'none';
+    console.log('📍 No estás en el último tema - Botón oculto');
+    return;
+  }
+  
+  // ✅ PASO 3: Verificar si todos los temas están marcados como hechos
+  const todosTemasMarcados = curso.every(mod => 
+    mod.temas.every(t => t.hecho)
+  );
+  
+  console.log('📝 Todos los temas completados:', todosTemasMarcados ? 'Sí ✅' : 'No ❌');
+  
+  if (todosTemasMarcados) {
+    btnEvaluacion.style.display = 'block';
+    console.log('✅ Todos los temas completados - Botón VISIBLE');
+  } else {
+    btnEvaluacion.style.display = 'none';
+    console.log('⏳ Faltan temas por completar - Botón oculto');
+  }
+}
+
+// ============================================
+// MOSTRAR CURSO COMPLETADO
+// ============================================
+function mostrarCursoCompletadoGlobal() {
+  btnEvaluacion.style.display = 'none';
+
+  curso.forEach(mod => {
+    mod.habilitado = true;
+    mod.temas.forEach(t => {
+      t.hecho = true;
+      t.habilitado = true;
+    });
+  });
+
+  cargarModulos();
+
+  contenidoLeccion.innerHTML = "";
+  const mensaje = document.createElement('div');
+  mensaje.className = 'alert alert-success mt-4 text-center fw-bold';
+  mensaje.textContent = '🎉 ¡Felicidades! Has completado el curso de IA para Contenido Visual exitosamente.';
+  contenidoLeccion.appendChild(mensaje);
+}
+
+// ============================================
+// BOTÓN SIGUIENTE
+// ============================================
+function siguienteTema() {
+  if (temaActual < curso[moduloActual].temas.length - 1) {
+    mostrarTema(moduloActual, temaActual + 1);
+  } else if (moduloActual < curso.length - 1) {
+    mostrarTema(moduloActual + 1, 0);
+  } else {
+    btnSiguiente.disabled = true;
+  }
+  guardarProgreso();
+}
+
+// ============================================
+// BOTÓN COMENZAR
+// ============================================
+btnComenzar.onclick = () => {
+  console.log('🚀 Iniciando curso...');
+  document.getElementById('pantalla-inicial').style.display = 'none';
+  document.getElementById('contenido-curso').style.display = 'block';
+  curso[0].habilitado = true;
+  curso[0].temas[0].habilitado = true;
+  cargarModulos();
+  mostrarTema(0, 0);
+};
+
+// ============================================
+// AL CARGAR LA PÁGINA
+// ============================================
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log('🚀 Iniciando Campus Virtual...');
+  
+  // ✅ PASO 1: Verificar si el curso ya está completado
+  const completado = await verificarCursoCompletado();
+  
+  console.log('📊 Estado inicial del curso:', completado ? '✅ COMPLETADO' : '⏳ En progreso');
+  
+  if (completado) {
+    console.log('🎓 Mostrando pantalla de curso completado...');
+    document.getElementById('pantalla-inicial').style.display = 'none';
+    document.getElementById('contenido-curso').style.display = 'block';
+    await cargarProgresoBaseDatos();
+    cargarModulos();
+    mostrarCursoCompletadoGlobal();
+    
+    // ✅ ASEGURAR que el botón esté oculto
+    btnEvaluacion.style.display = 'none';
+    console.log('🔒 Botón de evaluación OCULTO (curso completado)');
+  } else {
+    // ✅ PASO 2: Cargar progreso guardado
+    const tieneProgreso = await cargarProgresoBaseDatos();
+    
+    if (tieneProgreso) {
+      console.log('📂 Progreso encontrado, restaurando estado...');
+      document.getElementById('pantalla-inicial').style.display = 'none';
+      document.getElementById('contenido-curso').style.display = 'block';
+      cargarModulos();
+      mostrarTema(moduloActual, temaActual);
+      
+      // ✅ Verificar botón de evaluación después de cargar progreso
+      await verificarMostrarBotonEvaluacion();
+    } else {
+      console.log('📝 Sin progreso previo, mostrando pantalla inicial');
+      // Si no hay progreso, mostrar pantalla inicial
+      cargarModulos();
+      btnEvaluacion.style.display = 'none';
+    }
+  }
+  
+  console.log('✅ Campus Virtual cargado correctamente');
+});
+</script>
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

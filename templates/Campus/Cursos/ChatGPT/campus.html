@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Virtual - Chat GPT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Campus/Cursos/ChatGPT/campus.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <span class="navbar-text text-white">Bienvenido al Campus EducaciónIT</span>
+
+    <div class="dropdown">
+      <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+         href="#" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle user-icon fs-4"></i>
+        <span class="ms-2">{{ usuario.nombre if usuario else 'Usuario' }}</span>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+        <li>
+          <a class="dropdown-item" href="{{ url_for('inicio_campus') }}">
+            <i class="bi bi-house-door me-2"></i>Inicio
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('mis_cursos') }}">
+            <i class="bi bi-journal-text me-2"></i>Mis cursos
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="{{ url_for('logout') }}">
+            <i class="bi bi-box-arrow-right me-2"></i>Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="campus-container">
+  <aside class="sidebar">
+    <h4>Chat GPT</h4>
+    <ul class="list-group" id="lista-modulos"></ul>   
+  </aside>
+
+  <main class="content d-flex flex-column justify-content-center align-items-center text-center">
+    <div id="pantalla-inicial">
+      <h2>Bienvenid@ al Curso de Chat GPT</h2>
+      <p class="mt-3">
+        En este curso aprenderás los fundamentos de ChatGPT desde lo más básico hasta conceptos avanzados.
+        Contamos con <strong>4 módulos</strong> que incluyen:
+      </p>
+      <ul class="text-start mx-auto" style="max-width:500px;">
+        <li>Fundamentos de ChatGPT y la Ingeniería de Prompts</li>
+        <li>Casos de Uso en Proyectos Personales y Profesionales</li>
+        <li>Automatización y Integración a través de APIs</li>
+        <li>Consideraciones de Seguridad, Ética y Sesgos</li>
+      </ul>
+      <p class="mt-3">
+        Ante cualquier duda, podés escribir al correo de la profesora <strong>María Lopez</strong>: 
+        <a href="mailto:maria.lopez@educacionit.com">maria.lopez@educacionit.com</a>
+      </p>
+      <button id="btn-comenzar" class="btn btn-primary mt-3">Comenzar</button>
+    </div>
+
+    <div id="contenido-curso" style="display:none; width:100%;">
+      <h2 id="titulo-leccion"></h2>
+      <div id="contenido-leccion"></div>
+      <div class="d-flex justify-content-end">
+        <button id="btn-siguiente" class="btn btn-primary mt-3" onclick="siguienteTema()" disabled>Siguiente</button>
+      </div>
+    </div>
+
+    <!--Acá marca en rojo, pero, aún asi funciona el script. Solamente no es compatible, porque no lo reconoce el Visual, pero si funciona-->
+   <button id="btn-evaluacion"
+        class="btn btn-warning mt-3"
+        onclick="window.location.href='{{ url_for('curso_chatgpt_prueba') }}';"
+        style="display:none;">
+    Realizar Evaluación Final
+   </button>
+  </main>
+</div>
+
+<script>
+const curso = [
+    {
+        titulo: "Módulo 1: Introducción",
+        temas: [
+        {
+            titulo: "Fundamentos de ChatGPT",
+            contenido: `
+            <div class="tema-contenido">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/kS0oj5y3LjU?si=9INl8n12ffA3VVA_" title="Video Instalación de Python" allowfullscreen></iframe>
+            </div>
+            <div class="descripcion-container text-center" style="max-width: 800px; margin: 0 auto;">
+                <h3>Proceso de Instalación y Primeros Pasos</h3>
+                <p>
+                Módulo 1: Fundamentos de ChatGPT y la Ingeniería de Prompts
+                Este módulo te introduce a la Inteligencia Artificial Generativa y a cómo funciona ChatGPT. Aprenderás qué es un modelo de lenguaje, sus capacidades y limitaciones, y la importancia de la Ingeniería de Prompts para obtener resultados óptimos. Un prompt es la instrucción o pregunta que le das a la IA.
+                </p>
+                <p>
+                Ante cualquier duda, puedes comunicarte con el profesor 
+                <a href="mailto:maria.lopez@educacionit.com" style="text-decoration: none; color: #0d6efd; display: inline-flex; align-items: center; gap: 5px;">
+                    <i class="bi bi-envelope-fill"></i> maria.lopez@educacionit.com
+                </a>
+                </p>
+            </div>
+            </div>`
+        },
+        ]
+    },
+  {
+    titulo: "Módulo 2: Casos de uso en Proyectos Personales y Profesionales",
+    temas: [
+      {
+        titulo: "Casos de uso en Proyectos Personales",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/KGnPAP28M3o?si=yC8YPGplmzEkaj0Q" title="Video Variables" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p>En este módulo, explorarás cómo aplicar ChatGPT en diferentes ámbitos, desde la vida diaria hasta el entorno laboral. Aprenderás a usar la IA como una herramienta de apoyo para optimizar tareas.
+
+            Ejemplos de Aplicaciones
+            Generación de Contenido: Escribir artículos de blog, guiones, correos electrónicos, títulos, etc.
+
+            Análisis y Resumen: Sintetizar documentos largos, extraer puntos clave de informes o audios (con la ayuda de otras herramientas).</p>
+          </div>
+        </div>`
+      },
+      {
+        titulo: "Casos de uso en Proyectos profesionales",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/mjeDaoild08?si=yaqg6bQM-PpRQPsO" title="Video Tipos de Datos" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p>En este módulo, explorarás cómo aplicar ChatGPT en diferentes ámbitos, desde la vida diaria hasta el entorno laboral. Aprenderás a usar la IA como una herramienta de apoyo para optimizar tareas.Investigación y Lluvia de Ideas: Investigar temas rápidamente, generar ideas para un proyecto, crear esquemas.
+
+            Marketing y Comunicación: Redactar copys para redes sociales, crear propuestas comerciales o planes de comunicación.</p>
+          </div>
+        </div>`
+      }
+    ]
+  },
+  {
+    titulo: "Módulo 3: Automatización y Integración a través de APIs",
+    temas: [
+      {
+        titulo: "Automatización y Integración a través de APIs",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe  src="https://www.youtube.com/embed/IXgPEW26-f0?si=fU-m91IZConHyE3z" title="Video Condicionales" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p> Este módulo profundiza en las capacidades más técnicas de ChatGPT. Aprenderás a conectar la IA a tus propias aplicaciones y programas a través de la API (Interfaz de Programación de Aplicaciones) de OpenAI. Esto permite la creación de soluciones personalizadas.
+            Conceptos Clave
+            API de OpenAI: Un conjunto de herramientas que permite a los desarrolladores enviar prompts y recibir respuestas de los modelos de lenguaje de OpenAI de forma programática.
+
+            Clave de API: Una clave única que te identifica y te permite acceder a la API. Debes mantenerla segura.
+
+            Costos: El uso de la API tiene un costo que generalmente se basa en la cantidad de tokens que procesas.</p>
+          </div>
+        </div>`
+      }
+    ]
+  },
+  {
+    titulo: "Módulo 4: Consideraciones de Seguridad, Ética y Sesgos",
+    temas: [
+      {
+        titulo: "Seguridad, Ética y Sesgos",
+        contenido: `
+        <div class="tema-contenido">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/4x4uAD6feQo?si=Zd7vy0Sn7ywtLcYY" title="Video Diccionarios" allowfullscreen></iframe>
+          </div>
+          <div class="descripcion-container">
+            <h3>¿Qué aprenderás?</h3>
+            <p> El uso de la IA no está exento de desafíos. Este módulo te enseña a abordar los aspectos éticos, de seguridad y de privacidad al trabajar con modelos generativos. Es fundamental ser un usuario responsable.
+
+            Temas Cruciales
+            Sesgos en los Datos: Los modelos de IA pueden reflejar y amplificar los sesgos existentes en los datos con los que fueron entrenados (ej., sesgos de género, raciales, etc.).
+
+            Privacidad: Nunca compartas información personal o sensible con la IA. Las conversaciones pueden ser utilizadas para el entrenamiento futuro del modelo.
+
+            erechos de Autor: Cuestiones sobre la originalidad del contenido generado y los derechos de autor del material con el que se entrenó el modelo.
+
+            Uso Malicioso: Los modelos pueden ser usados para crear fake news, suplantación de identidad o generar spam.</p>
+          </div>
+        </div>`
+      }
+    ]
+  }
+];
+
+
+
+
+
+// ============================================
+// VARIABLES GLOBALES
+// ============================================
+let moduloActual = 0;
+let temaActual = 0;
+const ID_CURSO = 2; // ID del curso 
+
+const listaModulos = document.getElementById('lista-modulos');
+const tituloLeccion = document.getElementById('titulo-leccion');
+const contenidoLeccion = document.getElementById('contenido-leccion');
+const btnSiguiente = document.getElementById('btn-siguiente');
+const btnComenzar = document.getElementById('btn-comenzar');
+const btnEvaluacion = document.getElementById('btn-evaluacion');
+
+// ============================================
+// FUNCIONES PARA INTERACTUAR CON LA API
+// ============================================
+
+// Guardar progreso en la base de datos
+async function guardarProgreso() {
+  const progreso = {
+    modulo_actual: moduloActual,
+    tema_actual: temaActual,
+    datos_progreso: curso.map(mod => ({
+      habilitado: mod.habilitado,
+      temas: mod.temas.map(t => ({
+        hecho: t.hecho,
+        habilitado: t.habilitado
+      }))
+    }))
+    // ✅ NO enviar curso_completado aquí
+  };
+
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(progreso)
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('Error al guardar progreso:', data.error);
+    } else {
+      console.log('✅ Progreso guardado correctamente');
+    }
+  } catch (error) {
+    console.error('Error de conexión al guardar progreso:', error);
+  }
+}
+
+// Cargar progreso desde la base de datos
+async function cargarProgresoBaseDatos() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Error al cargar progreso:', data.error);
+      return false;
+    }
+
+    if (!data.existe) {
+      return false; // No hay progreso guardado
+    }
+
+    // Restaurar estado de módulos y temas
+    if (data.datos_progreso) {
+      data.datos_progreso.forEach((mod, i) => {
+        if (curso[i]) {
+          curso[i].habilitado = mod.habilitado;
+          mod.temas.forEach((t, j) => {
+            if (curso[i].temas[j]) {
+              curso[i].temas[j].hecho = t.hecho;
+              curso[i].temas[j].habilitado = t.habilitado;
+            }
+          });
+        }
+      });
+    }
+
+    moduloActual = data.modulo_actual;
+    temaActual = data.tema_actual;
+
+    return true;
+  } catch (error) {
+    console.error('Error de conexión al cargar progreso:', error);
+    return false;
+  }
+}
+
+// Marcar curso como completado
+async function aprobarCurso() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}/completar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log('✅ Curso completado en la base de datos');
+      mostrarCursoCompletadoGlobal();
+    } else {
+      console.error('Error al completar curso:', data.error);
+    }
+  } catch (error) {
+    console.error('Error de conexión al aprobar curso:', error);
+  }
+}
+
+// Verificar si el curso ya fue completado
+async function verificarCursoCompletado() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}`);
+    const data = await response.json();
+
+    if (response.ok && data.existe && data.curso_completado) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Error al verificar curso completado:', error);
+    return false;
+  }
+}
+
+// ============================================
+// INICIALIZACIÓN DE MÓDULOS Y TEMAS
+// ============================================
+curso.forEach(m => {
+  m.habilitado = false;
+  m.temas.forEach(t => {
+    t.hecho = false;
+    t.habilitado = false;
+  });
+});
+
+// ============================================
+// CARGAR MÓDULOS EN SIDEBAR
+// ============================================
+function cargarModulos() {
+  listaModulos.innerHTML = "";
+  curso.forEach((modulo, i) => {
+    const li = document.createElement('li');
+    li.classList.add('list-group-item');
+    if (!modulo.habilitado) li.classList.add('deshabilitado');
+
+    const todosHechos = modulo.temas.every(t => t.hecho);
+    const iconoCheck = todosHechos ? `<i class="bi bi-check2 modulo-completo"></i>` : "";
+
+    li.innerHTML = `
+      <a class="modulo-link" data-bs-toggle="collapse" href="#modulo${i}" role="button">
+        ${modulo.titulo} ${iconoCheck} <i class="bi bi-chevron-down"></i>
+      </a>
+      <ul class="list-group collapse" id="modulo${i}"></ul>
+    `;
+    listaModulos.appendChild(li);
+
+    const ulTemas = li.querySelector('ul');
+    modulo.temas.forEach((tema, j) => {
+      const temaLi = document.createElement('li');
+      temaLi.classList.add('list-group-item', 'tema-item');
+      temaLi.textContent = tema.titulo;
+
+      if (tema.habilitado) {
+        temaLi.style.cursor = 'pointer';
+        temaLi.style.opacity = '1';
+        temaLi.onclick = () => mostrarTema(i, j);
+      } else {
+        temaLi.style.cursor = 'not-allowed';
+        temaLi.style.opacity = '0.5';
+      }
+
+      ulTemas.appendChild(temaLi);
+    });
+  });
+}
+
+// ============================================
+// MOSTRAR TEMA
+// ============================================
+async function mostrarTema(m, t) {
+  if (!curso[m].habilitado || !curso[m].temas[t].habilitado) {
+    alert("Debes completar los temas anteriores primero.");
+    return;
+  }
+
+  console.log(`🎯 Mostrando tema: Módulo ${m}, Tema ${t}`);
+
+  moduloActual = m;
+  temaActual = t;
+  const tema = curso[m].temas[t];
+  tituloLeccion.textContent = tema.titulo;
+  contenidoLeccion.innerHTML = tema.contenido;
+
+  let botonesHTML = `<button class="btn btn-success" id="btn-hecho">Marcar como hecho</button>`;
+  if (m === 1 && t === 1) {
+    botonesHTML += `<button class="btn btn-primary ms-2" id="btn-pdf" onclick="window.open('{{ url_for('static', filename='Material/actividad_chatgpt.pdf') }}', '_blank')">Ver PDF de práctica</button>`;
+  }
+
+  const contenedorBotones = document.createElement('div');
+  contenedorBotones.id = 'botones-leccion';
+  contenedorBotones.className = 'd-flex gap-2 mt-3 justify-content-end';
+  contenedorBotones.innerHTML = botonesHTML;
+  contenidoLeccion.appendChild(contenedorBotones);
+
+  btnSiguiente.disabled = true;
+  btnSiguiente.style.display = (m === curso.length - 1 && t === curso[m].temas.length - 1)
+    ? 'none' : 'inline-block';
+
+  // ✅ Verificar si el tema ya está marcado como hecho
+  const btnHecho = document.getElementById('btn-hecho');
+  if (tema.hecho) {
+    btnHecho.disabled = true;
+    btnHecho.textContent = '✓ Completado';
+    btnHecho.classList.remove('btn-success');
+    btnHecho.classList.add('btn-secondary');
+    btnSiguiente.disabled = false;
+  } else {
+    btnHecho.onclick = () => marcarComoHecho(m, t);
+  }
+
+  // ✅ CRÍTICO: Verificar estado del botón de evaluación
+  await verificarMostrarBotonEvaluacion();
+  
+  await guardarProgreso();
+}
+
+// ============================================
+// MARCAR TEMA COMO HECHO
+// ============================================
+async function marcarComoHecho(m, t) {
+  curso[m].temas[t].hecho = true;
+  
+  // Deshabilitar el botón inmediatamente
+  const btnHecho = document.getElementById('btn-hecho');
+  if (btnHecho) {
+    btnHecho.disabled = true;
+    btnHecho.textContent = '✓ Completado';
+    btnHecho.classList.remove('btn-success');
+    btnHecho.classList.add('btn-secondary');
+  }
+  
+  btnSiguiente.disabled = false;
+
+  if (t + 1 < curso[m].temas.length) {
+    curso[m].temas[t + 1].habilitado = true;
+  } else if (m + 1 < curso.length) {
+    curso[m + 1].habilitado = true;
+    curso[m + 1].temas[0].habilitado = true;
+  }
+
+  await guardarProgreso();
+  cargarModulos();
+  
+  // ✅ Verificar después de guardar
+  await verificarMostrarBotonEvaluacion();
+}
+
+// ============================================
+// VERIFICAR SI MOSTRAR BOTÓN DE EVALUACIÓN
+// ============================================
+async function verificarMostrarBotonEvaluacion() {
+  console.log('🔍 Verificando estado del botón de evaluación...');
+  
+  // ✅ PASO 1: SIEMPRE verificar primero si el curso está completado en la BD
+  const completado = await verificarCursoCompletado();
+  
+  console.log('📊 Estado del curso:', completado ? '✅ Completado' : '⏳ En progreso');
+  
+  // Si ya está completado, NUNCA mostrar el botón
+  if (completado) {
+    btnEvaluacion.style.display = 'none';
+    console.log('🔒 Curso completado - Botón de evaluación OCULTO permanentemente');
+    return;
+  }
+  
+  // ✅ PASO 2: Verificar si estamos en el último tema
+  const ultimoModulo = curso.length - 1;
+  const ultimoTema = curso[ultimoModulo].temas.length - 1;
+  
+  console.log(`📍 Ubicación actual: Módulo ${moduloActual}/${ultimoModulo}, Tema ${temaActual}/${ultimoTema}`);
+  
+  if (moduloActual !== ultimoModulo || temaActual !== ultimoTema) {
+    // No estamos en el último tema
+    btnEvaluacion.style.display = 'none';
+    console.log('📍 No estás en el último tema - Botón oculto');
+    return;
+  }
+  
+  // ✅ PASO 3: Verificar si todos los temas están marcados como hechos
+  const todosTemasMarcados = curso.every(mod => 
+    mod.temas.every(t => t.hecho)
+  );
+  
+  console.log('📝 Todos los temas completados:', todosTemasMarcados ? 'Sí ✅' : 'No ❌');
+  
+  if (todosTemasMarcados) {
+    btnEvaluacion.style.display = 'block';
+    console.log('✅ Todos los temas completados - Botón VISIBLE');
+  } else {
+    btnEvaluacion.style.display = 'none';
+    console.log('⏳ Faltan temas por completar - Botón oculto');
+  }
+}
+
+// ============================================
+// MOSTRAR CURSO COMPLETADO
+// ============================================
+function mostrarCursoCompletadoGlobal() {
+  btnEvaluacion.style.display = 'none';
+
+  curso.forEach(mod => {
+    mod.habilitado = true;
+    mod.temas.forEach(t => {
+      t.hecho = true;
+      t.habilitado = true;
+    });
+  });
+
+  cargarModulos();
+
+  contenidoLeccion.innerHTML = "";
+  const mensaje = document.createElement('div');
+  mensaje.className = 'alert alert-success mt-4 text-center fw-bold';
+  mensaje.textContent = '🎉 ¡Felicidades! Has completado el curso de Chat GPT exitosamente.';
+  contenidoLeccion.appendChild(mensaje);
+}
+
+// ============================================
+// BOTÓN SIGUIENTE
+// ============================================
+function siguienteTema() {
+  if (temaActual < curso[moduloActual].temas.length - 1) {
+    mostrarTema(moduloActual, temaActual + 1);
+  } else if (moduloActual < curso.length - 1) {
+    mostrarTema(moduloActual + 1, 0);
+  } else {
+    btnSiguiente.disabled = true;
+  }
+  guardarProgreso();
+}
+
+// ============================================
+// BOTÓN COMENZAR
+// ============================================
+btnComenzar.onclick = () => {
+  console.log('🚀 Iniciando curso...');
+  document.getElementById('pantalla-inicial').style.display = 'none';
+  document.getElementById('contenido-curso').style.display = 'block';
+  curso[0].habilitado = true;
+  curso[0].temas[0].habilitado = true;
+  cargarModulos();
+  mostrarTema(0, 0);
+};
+
+// ============================================
+// AL CARGAR LA PÁGINA
+// ============================================
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log('🚀 Iniciando Campus Virtual...');
+  
+  // ✅ PASO 1: Verificar si el curso ya está completado
+  const completado = await verificarCursoCompletado();
+  
+  console.log('📊 Estado inicial del curso:', completado ? '✅ COMPLETADO' : '⏳ En progreso');
+  
+  if (completado) {
+    console.log('🎓 Mostrando pantalla de curso completado...');
+    document.getElementById('pantalla-inicial').style.display = 'none';
+    document.getElementById('contenido-curso').style.display = 'block';
+    await cargarProgresoBaseDatos();
+    cargarModulos();
+    mostrarCursoCompletadoGlobal();
+    
+    // ✅ ASEGURAR que el botón esté oculto
+    btnEvaluacion.style.display = 'none';
+    console.log('🔒 Botón de evaluación OCULTO (curso completado)');
+  } else {
+    // ✅ PASO 2: Cargar progreso guardado
+    const tieneProgreso = await cargarProgresoBaseDatos();
+    
+    if (tieneProgreso) {
+      console.log('📂 Progreso encontrado, restaurando estado...');
+      document.getElementById('pantalla-inicial').style.display = 'none';
+      document.getElementById('contenido-curso').style.display = 'block';
+      cargarModulos();
+      mostrarTema(moduloActual, temaActual);
+      
+      // ✅ Verificar botón de evaluación después de cargar progreso
+      await verificarMostrarBotonEvaluacion();
+    } else {
+      console.log('📝 Sin progreso previo, mostrando pantalla inicial');
+      // Si no hay progreso, mostrar pantalla inicial
+      cargarModulos();
+      btnEvaluacion.style.display = 'none';
+    }
+  }
+  
+  console.log('✅ Campus Virtual cargado correctamente');
+});
+ 
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

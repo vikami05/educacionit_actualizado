@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Evaluación Final</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Campus/Cursos/IAparaContenidos/style.css') }}">
+</head>
+<body>
+  <main class="quiz-container container py-4">
+    <h2 class="text-center mb-3">Evaluación Final</h2>
+    <p class="text-center">Tienes 5 minutos para completar el test. Para aprobar con nota máxima debes obtener al menos 7 puntos.</p>
+    <div class="text-center mb-3">
+      <span>Tiempo restante: </span><span id="timer">05:00</span>
+    </div>
+
+    <form id="quizForm">
+      <!-- Preguntas -->
+      <div class="question">
+        <p><strong>1.¿Cuál es el tipo de red neuronal fundamental que se utiliza principalmente en la Visión por Computadora para procesar datos visuales como imágenes y videos?
+        <label><input type="radio" name="q1" value="Par"> a) Redes Neuronales Recurrentes (RNNs)</label><br>
+        <label><input type="radio" name="q1" value="Impar"> b) Redes Neuronales Convolucionales (CNNs)</label><br>
+        <label><input type="radio" name="q1" value="7"> c) Redes Neuronales de Perceptrón Multicapa (MLPs)</label>
+      </div>
+
+      <div class="question">
+        <p><strong>2. ¿Cuál es la función de este código?</strong>¿Cuál de las siguientes tareas pertenece al campo de la Visión por Computadora (Computer Vision)?</p>
+        <label><input type="radio" name="q2" value="correcta"> a) Detección de objetos y segmentación semántica en una imagen.</label><br>
+        <label><input type="radio" name="q2" value="opcion2"> b) Traducción automática de un idioma a otro.</label><br>
+        <label><input type="radio" name="q2" value="opcion3"> c) Generación de texto a partir de una secuencia de audio.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>3.¿Qué modelo de IA generativa se basa en un proceso de 'ruido y denoising' (eliminación de ruido progresiva) y es la arquitectura dominante detrás de herramientas modernas como Stable Diffusion y DALL-E?</strong></p>
+        <label><input type="radio" name="q3" value="Tupla"> a) Modelos de Difusión (Diffusion Models)</label><br>
+        <label><input type="radio" name="q3" value="Lista"> b) Autocodificadores Variacionales (VAEs)</label><br>
+        <label><input type="radio" name="q3" value="Conjunto"> c) Redes Generativas Antagónicas (GANs)</label><br>
+      </div>
+
+      <div class="question">
+        <p><strong>4.¿La técnica de Prompt Engineering se enfoca en:</strong></p>
+        <label><input type="radio" name="q4" value="correcta"> a) Optimizar las instrucciones de texto (prompts) dadas al modelo para obtener resultados visuales precisos y deseados.</label><br>
+        <label><input type="radio" name="q4" value="opcion2"> b) Aumentar la capacidad de memoria de la GPU para entrenar el modelo.</label><br>
+        <label><input type="radio" name="q4" value="opcion3"> c) Programar el código fuente de una red neuronal generativa.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>5. En el contexto de aplicaciones de E-commerce y fotografía, ¿qué técnica de IA es más útil para mejorar automáticamente la resolución y calidad visual de imágenes de baja definición?</strong></p>
+        <label><input type="radio" name="q5" value="correcta"> a) Up-scaling o Super-resolución.</label><br>
+        <label><input type="radio" name="q5" value="opcion2"> b) Segmentación de instancias.</label><br>
+        <label><input type="radio" name="q5" value="opcion3"> c) Detección de bordes.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>6.¿Cuál es la principal preocupación ética y legal en torno a los derechos de autor (Copyright) de las imágenes generadas por IA?</strong></p>
+        <label><input type="radio" name="q6" value="correcta"> a) La incertidumbre sobre quién posee la propiedad intelectual: el usuario, el modelo de IA o la empresa que lo creó.</label><br>
+        <label><input type="radio" name="q6" value="opcion2"> b) La dificultad de compartir los prompts entre diferentes modelos de IA.</label><br>
+        <label><input type="radio" name="q6" value="opcion3"> c) El consumo excesivo de energía durante la generación de imágenes de alta resolución.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>7. En el contexto de proyectos, la integración de herramientas de IA en un Workflow optimizado busca principalmente:</strong></p>
+        <label><input type="radio" name="q7" value="correcta"> a) Automatizar tareas repetitivas (como el recorte, cambio de fondo o etiquetado masivo) para acelerar el proceso creativo.</label><br>
+        <label><input type="radio" name="q7" value="opcion2"> b) Limitar las creaciones visuales a un estilo artístico único para mantener la coherencia.</label><br>
+        <label><input type="radio" name="q7" value="opcion3"> c) Depender únicamente de las herramientas de IA, eliminando todo software tradicional de diseño.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>8. ¿Qué técnica avanzada permite a los usuarios 'enseñar' a un modelo generativo su propio estilo o un sujeto específico con un conjunto de imágenes relativamente pequeño, creando una versión personalizada del modelo base?</strong></p>
+        <label><input type="radio" name="q8" value="correcta"> a) LoRA (Low-Rank Adaptation) o Dreambooth.</label><br>
+        <label><input type="radio" name="q8" value="opcion2"> b) Inpainting.</label><br>
+        <label><input type="radio" name="q8" value="opcion3"> c) Detección de objetos.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>9. La herramienta ControlNet (Módulo 5) se utiliza principalmente para:</strong></p>
+        <label><input type="radio" name="q9" value="correcta"> a)Añadir un nivel de control estructural a la generación de imágenes, permitiendo al usuario especificar la pose, la profundidad o la composición exacta de la escena.</label><br>
+        <label><input type="radio" name="q9" value="opcion2"> b)Corregir errores gramaticales o de sintaxis en el prompt de entrada.</label><br>
+        <label><input type="radio" name="q9" value="opcion3"> c) Medir el impacto ambiental del entrenamiento del modelo de IA.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>10.El sesgo (Bias) en los datos de entrenamiento de un modelo de IA visual (Módulo 4) puede llevar a:</strong></p>
+        <label><input type="radio" name="q10" value="correcta"> a) Resultados visuales que son incompletos o que reflejan estereotipos, prejuicios y representaciones injustas de ciertos grupos demográficos.</label><br>
+        <label><input type="radio" name="q10" value="opcion2"> b) La necesidad de una conexión a internet más rápida para descargar los modelos.</label><br>
+        <label><input type="radio" name="q10" value="opcion3"> c) Una mejora en la velocidad de la generación de imágenes en tiempo real.</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
+
+   <div id="result" class="mt-3"></div>
+
+    <div class="text-center mt-3">
+      <button id="retryBtn" class="btn btn-warning" style="display:none;">Volver a intentar</button>
+      <button id="certBtn" class="btn btn-success" style="display:none;">Obtener mi certificado</button>
+    </div>
+  </main>
+
+
+
+
+<script>
+// ============================================
+// CONFIGURACIÓN
+// ============================================
+const ID_CURSO = 3; 
+
+const totalPreguntas = 10;
+const minAprobado = 7;
+let tiempoRestante = 300; // 5 minutos
+let temporizador;
+
+const timerSpan = document.getElementById('timer');
+const quizForm = document.getElementById('quizForm');
+const result = document.getElementById('result');
+const retryBtn = document.getElementById('retryBtn');
+const certBtn = document.getElementById('certBtn');
+
+// ============================================
+// FUNCIÓN: MARCAR CURSO COMO COMPLETADO EN BD
+// ============================================
+async function completarCursoEnBD() {
+  try {
+    const response = await fetch(`/api/progreso/${ID_CURSO}/completar`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('✅ Curso marcado como completado en la base de datos');
+      return true;
+    } else {
+      console.error('❌ Error al completar curso:', data.error);
+      return false;
+    }
+  } catch (error) {
+    console.error('❌ Error de conexión:', error);
+    return false;
+  }
+}
+
+// ============================================
+// TEMPORIZADOR
+// ============================================
+function iniciarTemporizador() {
+  clearInterval(temporizador);
+  tiempoRestante = 300;
+  temporizador = setInterval(() => {
+    let minutos = Math.floor(tiempoRestante / 60);
+    let segundos = tiempoRestante % 60;
+    timerSpan.textContent = `${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}`;
+    tiempoRestante--;
+    if (tiempoRestante < 0) {
+      clearInterval(temporizador);
+      evaluarTest(true);
+    }
+  }, 1000);
+}
+
+function resetearTest() {
+  quizForm.reset();
+  result.innerHTML = '';
+  retryBtn.style.display = 'none';
+  certBtn.style.display = 'none';
+  iniciarTemporizador();
+}
+
+// ============================================
+// EVENTOS
+// ============================================
+quizForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  evaluarTest(false);
+});
+
+retryBtn.addEventListener('click', () => {
+  resetearTest();
+});
+
+certBtn.addEventListener('click', () => {
+  window.location.href = "{{ url_for('curso_iaparacontenidos_certificado') }}";
+});
+
+// ============================================
+// EVALUAR TEST
+// ============================================
+async function evaluarTest(tiempoAcabado) {
+  const respuestasCorrectas = {
+    q1:'correcta', q2:'correcta', q3:'correcta', q4:'correcta', q5:'correcta',
+    q6:'correcta', q7:'correcta', q8:'correcta', q9:'correcta', q10:'correcta'
+  };
+
+  let puntaje = 0;
+  for (let q in respuestasCorrectas) {
+    const r = document.querySelector(`input[name="${q}"]:checked`);
+    if (r && r.value === respuestasCorrectas[q]) {
+      puntaje++;
+    }
+  }
+
+  // ============================================
+  // SI APROBÓ (≥7 puntos)
+  // ============================================
+  if (puntaje >= minAprobado) {
+    // Mostrar mensaje inicial
+    result.innerHTML = `
+      <div class="alert alert-success">
+        <h4 class="alert-heading">
+          <i class="bi bi-check-circle-fill"></i> ¡Felicidades!
+        </h4>
+        <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+        <p>Ahora puedes obtener tu certificado y tendrás la oportunidad de subir un proyecto guiado en PDF para mejorar tu perfil profesional en la bolsa de empleo de EducaciónIT.</p>
+        <hr>
+        <p class="mb-0">
+          <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Guardando...</span>
+          </div>
+          Marcando curso como completado...
+        </p>
+      </div>
+    `;
+
+    certBtn.style.display = 'none';
+    retryBtn.style.display = 'none';
+    clearInterval(temporizador);
+
+    // Marcar curso como completado en la base de datos
+    const exitoso = await completarCursoEnBD();
+
+    if (exitoso) {
+
+      // 🟢 NUEVO BLOQUE: Enviar nota y generar certificado automáticamente
+      try {
+        const respNota = await fetch(`/api/curso/${ID_CURSO}/nota`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nota: puntaje })
+        });
+        const dataNota = await respNota.json();
+        console.log('Respuesta del servidor (nota/certificado):', dataNota);
+
+        if (dataNota.aprobado) {
+          console.log('✅ Certificado generado automáticamente.');
+        } else {
+          console.warn('⚠️ Nota registrada, pero sin certificado.');
+        }
+      } catch (err) {
+        console.error('❌ Error al enviar la nota o generar certificado:', err);
+      }
+
+      // Actualizar mensaje de éxito
+      result.innerHTML = `
+        <div class="alert alert-success">
+          <h4 class="alert-heading">
+            <i class="bi bi-trophy-fill"></i> ¡Curso Completado!
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Ahora puedes obtener tu certificado y tendrás la oportunidad de subir un proyecto guiado en PDF para mejorar tu perfil profesional en la bolsa de empleo de EducaciónIT.</p>
+          <hr>
+          <p class="mb-0">
+            <i class="bi bi-check-circle-fill text-success"></i> 
+            Curso marcado como completado exitosamente.
+          </p>
+        </div>
+      `;
+   
+      certBtn.style.display = 'inline-block';
+  
+      // ✅ AGREGAR: Botón para volver al curso (solo si no existe)
+      const contenedorBotones = document.querySelector('.text-center.mt-3');
+      const botonExistente = contenedorBotones.querySelector('.btn-volver-curso');
+  
+      if (!botonExistente) {
+        const volverBtn = document.createElement('button');
+        volverBtn.className = 'btn btn-primary ms-2 btn-volver-curso';
+        volverBtn.innerHTML = '<i class="bi bi-arrow-left"></i> Volver al Curso';
+        volverBtn.onclick = () => {
+          window.location.href = "{{ url_for('curso_iaparacontenidos') }}";
+        };
+        contenedorBotones.appendChild(volverBtn);
+      }
+
+    } else {
+      // Error al guardar, pero igual mostrar botón de certificado
+      result.innerHTML = `
+        <div class="alert alert-warning">
+          <h4 class="alert-heading">
+            <i class="bi bi-exclamation-triangle-fill"></i> Aprobado (con advertencia)
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>¡Felicidades! Aprobaste la evaluación, pero hubo un problema al guardar en el servidor.</p>
+          <p>Por favor contacta al administrador o intenta nuevamente más tarde.</p>
+        </div>
+      `;
+    }
+
+  // ============================================
+  // SI NO APROBÓ (<7 puntos)
+  // ============================================
+  } else {
+    if (tiempoAcabado) {
+      result.innerHTML = `
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">
+            <i class="bi bi-clock-fill"></i> Tiempo Agotado
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Se acabó el tiempo. Necesitas al menos ${minAprobado} puntos para aprobar.</p>
+          <p>Debes volver a intentar el test.</p>
+        </div>
+      `;
+    } else {
+      result.innerHTML = `
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">
+            <i class="bi bi-x-circle-fill"></i> No Aprobado
+          </h4>
+          <p><strong>Puntaje: ${puntaje}/${totalPreguntas}</strong></p>
+          <p>Necesitas al menos ${minAprobado} puntos para aprobar.</p>
+          <p>Te recomendamos revisar el material del curso antes de volver a intentarlo.</p>
+        </div>
+      `;
+    }
+    retryBtn.style.display = 'inline-block';
+    certBtn.style.display = 'none';
+    clearInterval(temporizador);
+  }
+}
+
+// ============================================
+// INICIAR AL CARGAR LA PÁGINA
+// ============================================
+iniciarTemporizador();
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
