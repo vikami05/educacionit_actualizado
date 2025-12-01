@@ -1,0 +1,33 @@
+  body {
+  /* Fondo degradado celeste a violeta */
+  background: linear-gradient(to bottom right, #8fd3f4, #b388ff);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.quiz-container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.95); /* ligeramente transparente */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.question {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.question pre {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+button[type="submit"] {
+  width: 100%;
+}

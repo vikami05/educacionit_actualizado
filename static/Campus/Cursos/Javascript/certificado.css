@@ -1,0 +1,96 @@
+   /* Estilos confeti */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  opacity: 0.7;
+  pointer-events: none;
+  animation-name: caer;
+  animation-timing-function: linear;
+}
+
+@keyframes caer {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Estilos confeti modernos */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  opacity: 0.8;
+  pointer-events: none;
+  border-radius: 50%; /* forma circular más moderna */
+  animation-name: caer;
+  animation-timing-function: linear;
+}
+
+@keyframes caer {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Estilos del main y botones */
+.campus-container {
+  background: linear-gradient(135deg, #e0eaff, #f3e8ff); /* degradado azul-violeta suave */
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.content h2 {
+  color: #3a0ca3; /* violeta intenso */
+  font-weight: 700;
+}
+
+.content p {
+  color: #4361ee; /* azul moderno */
+  font-size: 1.1rem;
+}
+
+.btn-success {
+  background-color: #4361ee;
+  border-color: #4361ee;
+}
+
+.btn-success:hover {
+  background-color: #3a0ca3;
+  border-color: #3a0ca3;
+}
+
+.btn-primary {
+  background-color: #7209b7;
+  border-color: #7209b7;
+}
+
+.btn-primary:hover {
+  background-color: #3a0ca3;
+  border-color: #3a0ca3;
+}
+
+input[type="file"] {
+  border: 2px dashed #7209b7;
+  border-radius: 10px;
+  padding: 10px;
+}
